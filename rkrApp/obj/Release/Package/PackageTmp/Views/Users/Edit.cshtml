@@ -1,0 +1,124 @@
+﻿@model rkrApp.Models.Users
+
+@{
+    ViewBag.Title = "Редактирование информации о пользователе";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-11">
+            <h3>Редактирование информации о пользователе:</h3>
+
+            @if (ViewBag.error != null)
+            {
+                <div>
+                    <p class="error">@ViewBag.error</p>
+                </div>
+            }
+
+            @using (Html.BeginForm())
+            {
+                Html.ValidationSummary(true);
+                @Html.HiddenFor(model => model.id);
+                @Html.HiddenFor(model => model.password);
+                @Html.HiddenFor(model => model.id_role);
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2 col-md-2" for="surname">Фамилия:</label>
+                    <p class="col-sm-10 col-md-10">
+                        @Html.EditorFor(model => model.surname, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.surname, "", new { @class = "text-danger" })
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2 col-md-2" for="name">Имя:</label>
+                    <p class="col-sm-10 col-md-10">
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2 col-md-2" for="patronumic">Отчество:</label>
+                    <p class="col-sm-10 col-md-10">
+                        @Html.EditorFor(model => model.patronymic, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.patronymic, "", new { @class = "text-danger" })
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2 col-md-2" for="email">Email:</label>
+                    <p class="col-md-10">
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Роль:</label>
+                    <p class="col-md-10">@Html.DisplayFor(model => model.Roles.name)</p>
+                </div>
+
+                if (Model.id_role == 3 || Model.id_role == 4)
+                {
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Область:</label>
+                        <p class="col-md-10">@Model.getArea()</p>
+                    </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2"> Район:</label>
+                            <p class="col-md-10">@Model.getDistrict()</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Школа:</label>
+                            <p class="control-label col-md-10">@Model.getSchool()</p>
+                        </div>
+                }
+                else if (Model.id_role == 5)
+                {
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Область:</label>
+                        <p class="col-md-10">@Model.getArea()</p>
+                    </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2"> Район:</label>
+                            <p class="col-md-10">@Model.getDistrict()</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Предмет:</label>
+                            <p class="col-md-10">@Model.getSubject()</p>
+                        </div>
+                }
+                else if (Model.id_role == 6 || Model.id_role == 8)
+                {
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Область:</label>
+                        <p class="col-md-10">@Model.getArea()</p>
+                    </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Предмет:</label>
+                            <p class="col-md-10">@Model.getSubject()</p>
+                        </div>
+                }
+                else if (Model.id_role == 7)
+                {
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Область:</label>
+                        <p class="col-md-10">@Model.getArea()</p>
+                    </div>
+                }
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-success">Сохранить изменения</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

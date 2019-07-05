@@ -1,0 +1,18 @@
+﻿@model IEnumerable<rkrApp.Models.Documents>
+@{
+    ViewBag.Title = "Варианты котрольной работы";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <h3>Файлы</h3>
+
+            @foreach (var item in Model)
+            {
+                <p><a href="@item.path">@item.name</a></p>
+            }
+
+        </div>
+    </div>
+</div>

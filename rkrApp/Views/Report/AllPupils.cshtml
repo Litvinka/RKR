@@ -1,0 +1,63 @@
+﻿@model IEnumerable<rkrApp.Models.Students>
+
+@{
+    ViewBag.Title = "Результаты республиканской контрольной работы";
+}
+
+<div class="row" style="margin:0px;">
+            <div class="col-xs-12 col-md-12">
+                <h3>Результаты республиканской контрольной работы (РКР) учащихся по учебному предмету "@ViewBag.subject" (2018/2019 учебный год) </h3>
+                <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="example5" style="font-size:12px;">
+                	<thead>
+                		<tr>
+                			<th>№ п/п</th>
+                			<th>Название региона</th>
+                			<th>Название района</th>
+                			<th>Название учреждения образования</th>
+                			<th>Код учреждения образования</th>
+                			<th>Место расположения учреждения образования (г/с)</th>
+                			<th>Вид учреждения образования</th>
+                			<th>ФИО учащегося</th>
+                			<th>Пол учащегося</th>
+                			<th>Класс (с указанием буквы)</th>
+                			<th>Результаты итоговой аттестации по учебному предмету за 2017/18 уч. г.(отметка) </th>
+                			<th>Уровень усвоения учебного материала по результатам итоговой аттестации за 2017/18 уч. г. </th>
+                			<th>Результаты промежуточной  аттестации за ׀ четверть 2018/19 уч. г. (отметка)</th>
+                			<th>Уровень усвоения учебного материала по результатам промежуточной аттестации за ׀ четверть 2018/19  уч. г.</th>
+                			<th>Результаты промежуточной аттестации за ׀׀ четверть 2018/19  уч. г. (отметка)</th>
+                			<th>Уровень усвоения учебного материала по результатам итоговой аттестации за ׀׀ четверть 2018/19  уч. г.</th>
+                            <th>Сдача РКР</th>
+                		</tr>
+                	</thead>
+                	<tbody>
+                        @for (int i = 0; i < Model.Count(); ++i)
+                        {
+                		<tr>
+                			<td>@(i+1)</td>
+                			<td>@Model.ElementAt(i).Classes.Schools.Districts.Area.name</td>
+                			<td>@Model.ElementAt(i).Classes.Schools.Districts.name</td>
+                			<td>@Model.ElementAt(i).Classes.Schools.name</td>
+                			<td>@Model.ElementAt(i).Classes.Schools.code</td>
+                			<td>@Html.DisplayFor(model => model.ElementAt(i).Classes.Schools.Places.name)</td>
+                			<td>@Html.DisplayFor(model => model.ElementAt(i).Classes.Schools.Types_edu.name)</td>
+                			<td>@Model.ElementAt(i).surname @Model.ElementAt(i).name @if (Model.ElementAt(i).patronomic != null) { Write(Model.ElementAt(i).patronomic); }</td>
+                			<td>@Model.ElementAt(i).Genders.name</td>
+                			<td>@Model.ElementAt(i).Classes.Subjects_Numbers.number @if(@Model.ElementAt(i).Classes.letter!=null){ Write('"' + Model.ElementAt(i).Classes.letter+'"'); }</td>
+                			<td>@Model.ElementAt(i).mark_year</td>
+                			<td>@Model.ElementAt(i).getLevel(Model.ElementAt(i).mark_year)</td>
+                			<td>@Model.ElementAt(i).mark_1semestr</td>
+                            <td>@Model.ElementAt(i).getLevel(Model.ElementAt(i).mark_1semestr)</td>
+                			<td>@Model.ElementAt(i).mark_2semestr</td>
+                            <td>@Model.ElementAt(i).getLevel(Model.ElementAt(i).mark_2semestr)</td>
+                            <td>@if(Model.ElementAt(i).Results.Count() > 0) { Write("+"); } else { Write("-"); }</td>
+                		</tr>
+                        }
+                	</tbody>
+                </table>
+                </div>
+                <button type="button" id="btnExport" class="btn btn-success">
+      				Сохранить в Excel
+      			</button>
+            </div>
+        </div>

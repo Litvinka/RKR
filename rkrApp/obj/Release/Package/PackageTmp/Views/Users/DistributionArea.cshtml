@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Распределение работ для районной проверки";
+}
+
+<div class="container">
+    <h2>Распределение работ для областной проверки</h2>
+    <form method="post" action="/Users/DistributionArea">
+        <div class="form-group">
+            <label class="control-label col-sm-2 col-md-2" for="class">Предмет:</label>
+            <p class="col-sm-10 col-md-10">
+                @Html.DropDownList("subject_id", null, "", htmlAttributes: new { @class = "form-control", required = true })
+            </p>
+        </div>
+        <input type="submit" class="btn btn-success" value="Распределить работы" />
+    </form>
+    
+</div>
+

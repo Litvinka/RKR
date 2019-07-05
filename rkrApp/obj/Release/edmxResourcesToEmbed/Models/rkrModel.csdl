@@ -1,0 +1,705 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="rkrDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_coordinator" Type="Int32" />
+    <NavigationProperty Name="Districts" Relationship="Self.FK_Area" FromRole="Area" ToRole="Districts" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Area_Users" FromRole="Area" ToRole="Users" />
+    <NavigationProperty Name="Areas_Check" Relationship="Self.FK_Areas_Check_Area" FromRole="Area" ToRole="Areas_Check" />
+  </EntityType>
+  <EntityType Name="Areas_Check">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="id_user_check" Type="Int32" Nullable="false" />
+    <Property Name="id_subject_number" Type="Int32" Nullable="false" />
+    <Property Name="id_area" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Area" Relationship="Self.FK_Areas_Check_Area" FromRole="Areas_Check" ToRole="Area" />
+    <NavigationProperty Name="Subjects_Numbers" Relationship="Self.FK_Areas_Check_Subjects_Numbers" FromRole="Areas_Check" ToRole="Subjects_Numbers" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Areas_Check_Users" FromRole="Areas_Check" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Classes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="letter" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="id_subject_number" Type="Int32" Nullable="false" />
+    <Property Name="id_school" Type="Int32" Nullable="false" />
+    <Property Name="count" Type="Int32" />
+    <NavigationProperty Name="Subjects_Numbers" Relationship="Self.FK_Classes_Subjects_Numbers" FromRole="Classes" ToRole="Subjects_Numbers" />
+    <NavigationProperty Name="Schools" Relationship="Self.FK_Schools" FromRole="Classes" ToRole="Schools" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Students_Classes" FromRole="Classes" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Districts">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_area" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Area" Relationship="Self.FK_Area" FromRole="Districts" ToRole="Area" />
+    <NavigationProperty Name="Districts_Check" Relationship="Self.FK_Districts_Check_Districts" FromRole="Districts" ToRole="Districts_Check" />
+    <NavigationProperty Name="Schools" Relationship="Self.FK_Schools_Districts" FromRole="Districts" ToRole="Schools" />
+  </EntityType>
+  <EntityType Name="Districts_Check">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="id_user_check" Type="Int32" Nullable="false" />
+    <Property Name="id_subject_number" Type="Int32" Nullable="false" />
+    <Property Name="id_district" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Districts" Relationship="Self.FK_Districts_Check_Districts" FromRole="Districts_Check" ToRole="Districts" />
+    <NavigationProperty Name="Subjects_Numbers" Relationship="Self.FK_Districts_Check_Subjects_Numbers" FromRole="Districts_Check" ToRole="Subjects_Numbers" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Districts_Check_Users" FromRole="Districts_Check" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Documents">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <Property Name="id_subject_number" Type="Int32" Nullable="false" />
+    <Property Name="id_type_document" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Subjects_Numbers" Relationship="Self.FK_Documents_Subjects_Numbers" FromRole="Documents" ToRole="Subjects_Numbers" />
+    <NavigationProperty Name="Types_Document" Relationship="Self.FK_Documents_Types_Document" FromRole="Documents" ToRole="Types_Document" />
+  </EntityType>
+  <EntityType Name="Genders">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Students_Genders" FromRole="Genders" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Places">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Schools" Relationship="Self.FK_Schools_Places" FromRole="Places" ToRole="Schools" />
+  </EntityType>
+  <EntityType Name="Results">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="id_student" Type="Int32" Nullable="false" />
+    <Property Name="answer1" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="answer2" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="answer3" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="answer4" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="answer5" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="answer6" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="answer7" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="answer8" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="answer9" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="answer10" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="number_verification" Type="Byte" Nullable="false" />
+    <Property Name="date_verification" Type="DateTime" Precision="3" />
+    <Property Name="necessarily" Type="Boolean" />
+    <Property Name="errors1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="errors2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="errors3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="errors4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="errors5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="errors6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="errors7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="errors8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="errors9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="errors10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Results_Students" FromRole="Results" ToRole="Students" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Results_Users" FromRole="Results" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Time_X" Relationship="Self.FK_Time_X_Roles" FromRole="Roles" ToRole="Time_X" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Schools">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_district" Type="Int32" Nullable="false" />
+    <Property Name="id_user" Type="Int32" />
+    <Property Name="id_type_edy" Type="Int32" />
+    <Property Name="id_place" Type="Int32" />
+    <Property Name="code" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK_Schools" FromRole="Schools" ToRole="Classes" />
+    <NavigationProperty Name="Districts" Relationship="Self.FK_Schools_Districts" FromRole="Schools" ToRole="Districts" />
+    <NavigationProperty Name="Places" Relationship="Self.FK_Schools_Places" FromRole="Schools" ToRole="Places" />
+    <NavigationProperty Name="Schools_Observers" Relationship="Self.FK_Schools_Observers_Schools" FromRole="Schools" ToRole="Schools_Observers" />
+    <NavigationProperty Name="Types_edu" Relationship="Self.FK_Schools_Types_edu" FromRole="Schools" ToRole="Types_edu" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Schools_Users" FromRole="Schools" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Schools_Observers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="id_school" Type="Int32" Nullable="false" />
+    <Property Name="id_observer" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Schools" Relationship="Self.FK_Schools_Observers_Schools" FromRole="Schools_Observers" ToRole="Schools" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Schools_Observers_Users" FromRole="Schools_Observers" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Sessions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="date_enter" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="date_exit" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Sessions_Users" FromRole="Sessions" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Students">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="cipher" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="surname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="patronomic" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="level_edu" Type="Boolean" />
+    <Property Name="mark_year" Type="Byte" Nullable="false" />
+    <Property Name="mark_1semestr" Type="Byte" Nullable="false" />
+    <Property Name="mark_2semestr" Type="Byte" Nullable="false" />
+    <Property Name="number_in_the_list" Type="Byte" Nullable="false" />
+    <Property Name="variant" Type="Byte" />
+    <Property Name="scan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="id_classs" Type="Int32" Nullable="false" />
+    <Property Name="id_gender" Type="Int32" Nullable="false" />
+    <Property Name="last_change" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK_Students_Classes" FromRole="Students" ToRole="Classes" />
+    <NavigationProperty Name="Genders" Relationship="Self.FK_Students_Genders" FromRole="Students" ToRole="Genders" />
+    <NavigationProperty Name="Results" Relationship="Self.FK_Results_Students" FromRole="Students" ToRole="Results" />
+  </EntityType>
+  <EntityType Name="Subjects_Numbers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="subject" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="number" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="start" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Areas_Check" Relationship="Self.FK_Areas_Check_Subjects_Numbers" FromRole="Subjects_Numbers" ToRole="Areas_Check" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK_Classes_Subjects_Numbers" FromRole="Subjects_Numbers" ToRole="Classes" />
+    <NavigationProperty Name="Districts_Check" Relationship="Self.FK_Districts_Check_Subjects_Numbers" FromRole="Subjects_Numbers" ToRole="Districts_Check" />
+    <NavigationProperty Name="Documents" Relationship="Self.FK_Documents_Subjects_Numbers" FromRole="Subjects_Numbers" ToRole="Documents" />
+    <NavigationProperty Name="Time_X" Relationship="Self.FK_Time_X_Subjects_Numbers" FromRole="Subjects_Numbers" ToRole="Time_X" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Time_X">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="start" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="finish" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id_role" Type="Int32" Nullable="false" />
+    <Property Name="id_subject_number" Type="Int32" Nullable="false" />
+    <Property Name="is_appeal" Type="Boolean" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK_Time_X_Roles" FromRole="Time_X" ToRole="Roles" />
+    <NavigationProperty Name="Subjects_Numbers" Relationship="Self.FK_Time_X_Subjects_Numbers" FromRole="Time_X" ToRole="Subjects_Numbers" />
+  </EntityType>
+  <EntityType Name="Types_Document">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Documents" Relationship="Self.FK_Documents_Types_Document" FromRole="Types_Document" ToRole="Documents" />
+  </EntityType>
+  <EntityType Name="Types_edu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Schools" Relationship="Self.FK_Schools_Types_edu" FromRole="Types_edu" ToRole="Schools" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_role" Type="Int32" Nullable="false" />
+    <Property Name="surname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="patronymic" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Area" Relationship="Self.FK_Area_Users" FromRole="Users" ToRole="Area" />
+    <NavigationProperty Name="Areas_Check" Relationship="Self.FK_Areas_Check_Users" FromRole="Users" ToRole="Areas_Check" />
+    <NavigationProperty Name="Districts_Check" Relationship="Self.FK_Districts_Check_Users" FromRole="Users" ToRole="Districts_Check" />
+    <NavigationProperty Name="Results" Relationship="Self.FK_Results_Users" FromRole="Users" ToRole="Results" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+    <NavigationProperty Name="Schools" Relationship="Self.FK_Schools_Users" FromRole="Users" ToRole="Schools" />
+    <NavigationProperty Name="Schools_Observers" Relationship="Self.FK_Schools_Observers_Users" FromRole="Users" ToRole="Schools_Observers" />
+    <NavigationProperty Name="Sessions" Relationship="Self.FK_Sessions_Users" FromRole="Users" ToRole="Sessions" />
+  </EntityType>
+  <Association Name="FK_Area">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="Districts" Type="Self.Districts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Districts">
+        <PropertyRef Name="id_area" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Area_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Area" Type="Self.Area" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Area">
+        <PropertyRef Name="id_coordinator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Areas_Check_Area">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="Areas_Check" Type="Self.Areas_Check" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Areas_Check">
+        <PropertyRef Name="id_area" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Areas_Check_Subjects_Numbers">
+    <End Role="Subjects_Numbers" Type="Self.Subjects_Numbers" Multiplicity="1" />
+    <End Role="Areas_Check" Type="Self.Areas_Check" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects_Numbers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Areas_Check">
+        <PropertyRef Name="id_subject_number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Areas_Check_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Areas_Check" Type="Self.Areas_Check" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Areas_Check">
+        <PropertyRef Name="id_user_check" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Classes_Subjects_Numbers">
+    <End Role="Subjects_Numbers" Type="Self.Subjects_Numbers" Multiplicity="1" />
+    <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects_Numbers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Classes">
+        <PropertyRef Name="id_subject_number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schools">
+    <End Role="Schools" Type="Self.Schools" Multiplicity="1" />
+    <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schools">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Classes">
+        <PropertyRef Name="id_school" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Classes">
+    <End Role="Classes" Type="Self.Classes" Multiplicity="1" />
+    <End Role="Students" Type="Self.Students" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Classes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="id_classs" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Districts_Check_Districts">
+    <End Role="Districts" Type="Self.Districts" Multiplicity="1" />
+    <End Role="Districts_Check" Type="Self.Districts_Check" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Districts">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Districts_Check">
+        <PropertyRef Name="id_district" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schools_Districts">
+    <End Role="Districts" Type="Self.Districts" Multiplicity="1" />
+    <End Role="Schools" Type="Self.Schools" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Districts">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Schools">
+        <PropertyRef Name="id_district" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Districts_Check_Subjects_Numbers">
+    <End Role="Subjects_Numbers" Type="Self.Subjects_Numbers" Multiplicity="1" />
+    <End Role="Districts_Check" Type="Self.Districts_Check" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects_Numbers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Districts_Check">
+        <PropertyRef Name="id_subject_number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Districts_Check_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Districts_Check" Type="Self.Districts_Check" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Districts_Check">
+        <PropertyRef Name="id_user_check" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documents_Subjects_Numbers">
+    <End Role="Subjects_Numbers" Type="Self.Subjects_Numbers" Multiplicity="1" />
+    <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects_Numbers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="id_subject_number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documents_Types_Document">
+    <End Role="Types_Document" Type="Self.Types_Document" Multiplicity="1" />
+    <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Types_Document">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="id_type_document" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Genders">
+    <End Role="Genders" Type="Self.Genders" Multiplicity="1" />
+    <End Role="Students" Type="Self.Students" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genders">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="id_gender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schools_Places">
+    <End Role="Places" Type="Self.Places" Multiplicity="0..1" />
+    <End Role="Schools" Type="Self.Schools" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Schools">
+        <PropertyRef Name="id_place" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Results_Students">
+    <End Role="Students" Type="Self.Students" Multiplicity="1" />
+    <End Role="Results" Type="Self.Results" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="id_student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Results_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Results" Type="Self.Results" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Time_X_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Time_X" Type="Self.Time_X" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Time_X">
+        <PropertyRef Name="id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schools_Observers_Schools">
+    <End Role="Schools" Type="Self.Schools" Multiplicity="1" />
+    <End Role="Schools_Observers" Type="Self.Schools_Observers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schools">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Schools_Observers">
+        <PropertyRef Name="id_school" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schools_Types_edu">
+    <End Role="Types_edu" Type="Self.Types_edu" Multiplicity="0..1" />
+    <End Role="Schools" Type="Self.Schools" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Types_edu">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Schools">
+        <PropertyRef Name="id_type_edy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schools_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Schools" Type="Self.Schools" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Schools">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schools_Observers_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Schools_Observers" Type="Self.Schools_Observers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Schools_Observers">
+        <PropertyRef Name="id_observer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sessions_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Sessions" Type="Self.Sessions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sessions">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Time_X_Subjects_Numbers">
+    <End Role="Subjects_Numbers" Type="Self.Subjects_Numbers" Multiplicity="1" />
+    <End Role="Time_X" Type="Self.Time_X" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects_Numbers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Time_X">
+        <PropertyRef Name="id_subject_number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="rkrDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Area" EntityType="Self.Area" />
+    <EntitySet Name="Areas_Check" EntityType="Self.Areas_Check" />
+    <EntitySet Name="Classes" EntityType="Self.Classes" />
+    <EntitySet Name="Districts" EntityType="Self.Districts" />
+    <EntitySet Name="Districts_Check" EntityType="Self.Districts_Check" />
+    <EntitySet Name="Documents" EntityType="Self.Documents" />
+    <EntitySet Name="Genders" EntityType="Self.Genders" />
+    <EntitySet Name="Places" EntityType="Self.Places" />
+    <EntitySet Name="Results" EntityType="Self.Results" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="Schools" EntityType="Self.Schools" />
+    <EntitySet Name="Schools_Observers" EntityType="Self.Schools_Observers" />
+    <EntitySet Name="Sessions" EntityType="Self.Sessions" />
+    <EntitySet Name="Students" EntityType="Self.Students" />
+    <EntitySet Name="Subjects_Numbers" EntityType="Self.Subjects_Numbers" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Time_X" EntityType="Self.Time_X" />
+    <EntitySet Name="Types_Document" EntityType="Self.Types_Document" />
+    <EntitySet Name="Types_edu" EntityType="Self.Types_edu" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_Area" Association="Self.FK_Area">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Districts" EntitySet="Districts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Area_Users" Association="Self.FK_Area_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Area" EntitySet="Area" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Areas_Check_Area" Association="Self.FK_Areas_Check_Area">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Areas_Check" EntitySet="Areas_Check" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Areas_Check_Subjects_Numbers" Association="Self.FK_Areas_Check_Subjects_Numbers">
+      <End Role="Subjects_Numbers" EntitySet="Subjects_Numbers" />
+      <End Role="Areas_Check" EntitySet="Areas_Check" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Areas_Check_Users" Association="Self.FK_Areas_Check_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Areas_Check" EntitySet="Areas_Check" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Classes_Subjects_Numbers" Association="Self.FK_Classes_Subjects_Numbers">
+      <End Role="Subjects_Numbers" EntitySet="Subjects_Numbers" />
+      <End Role="Classes" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schools" Association="Self.FK_Schools">
+      <End Role="Schools" EntitySet="Schools" />
+      <End Role="Classes" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Classes" Association="Self.FK_Students_Classes">
+      <End Role="Classes" EntitySet="Classes" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Districts_Check_Districts" Association="Self.FK_Districts_Check_Districts">
+      <End Role="Districts" EntitySet="Districts" />
+      <End Role="Districts_Check" EntitySet="Districts_Check" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schools_Districts" Association="Self.FK_Schools_Districts">
+      <End Role="Districts" EntitySet="Districts" />
+      <End Role="Schools" EntitySet="Schools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Districts_Check_Subjects_Numbers" Association="Self.FK_Districts_Check_Subjects_Numbers">
+      <End Role="Subjects_Numbers" EntitySet="Subjects_Numbers" />
+      <End Role="Districts_Check" EntitySet="Districts_Check" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Districts_Check_Users" Association="Self.FK_Districts_Check_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Districts_Check" EntitySet="Districts_Check" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documents_Subjects_Numbers" Association="Self.FK_Documents_Subjects_Numbers">
+      <End Role="Subjects_Numbers" EntitySet="Subjects_Numbers" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documents_Types_Document" Association="Self.FK_Documents_Types_Document">
+      <End Role="Types_Document" EntitySet="Types_Document" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Genders" Association="Self.FK_Students_Genders">
+      <End Role="Genders" EntitySet="Genders" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schools_Places" Association="Self.FK_Schools_Places">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="Schools" EntitySet="Schools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Results_Students" Association="Self.FK_Results_Students">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Results_Users" Association="Self.FK_Results_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Time_X_Roles" Association="Self.FK_Time_X_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Time_X" EntitySet="Time_X" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schools_Observers_Schools" Association="Self.FK_Schools_Observers_Schools">
+      <End Role="Schools" EntitySet="Schools" />
+      <End Role="Schools_Observers" EntitySet="Schools_Observers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schools_Types_edu" Association="Self.FK_Schools_Types_edu">
+      <End Role="Types_edu" EntitySet="Types_edu" />
+      <End Role="Schools" EntitySet="Schools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schools_Users" Association="Self.FK_Schools_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Schools" EntitySet="Schools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schools_Observers_Users" Association="Self.FK_Schools_Observers_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Schools_Observers" EntitySet="Schools_Observers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sessions_Users" Association="Self.FK_Sessions_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Sessions" EntitySet="Sessions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Time_X_Subjects_Numbers" Association="Self.FK_Time_X_Subjects_Numbers">
+      <End Role="Subjects_Numbers" EntitySet="Subjects_Numbers" />
+      <End Role="Time_X" EntitySet="Time_X" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

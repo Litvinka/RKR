@@ -1,0 +1,39 @@
+﻿@model IEnumerable<rkrApp.Models.Students>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <table class="table table-striped table-bordered" id="table_blanks">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Classes.Schools.Districts.Area.name)</th>
+                        <th>@Html.DisplayNameFor(model => model.Classes.Schools.Districts.name)</th>
+                        <th>@Html.DisplayNameFor(model => model.cipher)</th>
+                        <th>@Html.DisplayNameFor(model => model.scan)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Classes.Schools.Districts.Area.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Classes.Schools.Districts.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.cipher)
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.scan)*@
+                                <a href="@Html.DisplayFor(modelItem => item.scan)" class="img-responsive_a btn btn-primary">Открыть бланк</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

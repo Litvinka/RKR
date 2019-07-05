@@ -1,0 +1,18 @@
+﻿@model rkrApp.Models.Classes
+
+@Html.HiddenFor(model => model.id)
+<h3>Информация о классе:</h3>
+<table>
+    <tr>
+        <td>Класс:</td>
+        <td>@Html.DisplayFor(model => model.Subjects_Numbers.subject_number)</td>
+    </tr>
+    <tr>
+        <td>Количество учеников:</td>
+        <td>@Html.DisplayFor(model => model.count)</td>
+    </tr>
+</table>
+<p>
+    @Html.ActionLink("Редактировать", "EditClass", new { id = Model.id }, htmlAttributes: new { @class = "btn btn-success school_btn", @title = "Редактировать класс", @type = "button" })
+    <a href="/Coordinator/IndexClasses" class="btn btn-info">Вернуться к списку классов</a>
+</p>

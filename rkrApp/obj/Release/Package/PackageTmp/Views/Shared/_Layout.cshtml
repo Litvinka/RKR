@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Республиканские контрольные работы</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="~/Content/Site.css" rel="stylesheet">
+    <link href="~/Content/chosen.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <link href="~/Content/confirm.css" rel="stylesheet" />
+</head>
+<body>
+    @if (Session["role"] != null)
+    {
+    <div style="width:100%;padding:5px 15px;background-color: #ffff99;color: #777777;font-size: 14px;font-weight: bold;display:flex;justify-content:space-between;align-items: center;">
+        @if (Convert.ToInt32(Session["role"]) == 3)
+        {
+            <a style="font-size: 12px;" target="_blank" href="~/Content/Инструкция_Школьный координатор_АС РКР.pdf" class="btn btn-default">Справка</a>
+        }
+        else if (Convert.ToInt32(Session["role"]) == 4)
+        {
+            <a style="font-size: 12px;" target="_blank" href="~/Content/Инструкция_Внешний координатор_АС РКР.pdf" class="btn btn-default">Справка</a>
+        }
+        else if (Convert.ToInt32(Session["role"]) == 5)
+        {
+            <a style="font-size: 12px;" target="_blank" href="~/Content/Инструкция_Районная предметная комиссия_АС РКР.pdf" class="btn btn-default">Справка</a>
+        }
+        else if (Convert.ToInt32(Session["role"]) == 6)
+        {
+            <a style="font-size: 12px;" target="_blank" href="~/Content/Инструкция_Областная предметная комиссия_АС РКР.pdf" class="btn btn-default">Справка</a>
+        }
+        else if (Convert.ToInt32(Session["role"]) == 7)
+        {
+            <a style="font-size: 12px;" target="_blank" href="~/Content/Инструкция_Региональный координатор_АС РКР.pdf" class="btn btn-default">Справка</a>
+        }
+    </div>
+    }
+    @*<div style="width:100%;padding:5px 15px;background-color: #cfedff;color: #777777;font-size: 14px;font-weight: bold;display:flex;justify-content:space-between;align-items: center;">
+        <p style="margin:0px;">С целью уменьшения нагрузки на систему АС РКР убедительная просьба ограничить количество подключенных компьютеров не более 3(трех) под одним аккаунтом.</p>
+    </div>*@
+    <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Республиканские контрольные работы</a>
+            </div>
+
+            @if (Convert.ToInt32(Session["role"]) == 1)
+            {
+                <ul class="nav navbar-nav">
+                    <li><a href="/Users/Create">Добавление пользователя</a></li>
+                    <li><a href="/Users/Index">Пользователи</a></li>
+                    <li><a href="/RegionCoordinator/Index">Процесс РКР</a></li>
+                    <li><a href="/Nio/Index">Просмотр бланков ответов</a></li>
+                    <li><a href="/Nio/Files">Загрузка файлов</a></li>
+                    <li><a href="/Nio/IndexDate">Даты работы</a></li>
+                    <li><a href="/Report/Report">Результаты</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="glyphicon glyphicon-user"></span> Информационный администратор
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Home/OutSite">Выйти</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            }
+            else if (Convert.ToInt32(Session["role"]) == 2)
+            {
+                <ul class="nav navbar-nav">
+                    <li><a href="/Users/Create">Добавление пользователя</a></li>
+                    <li><a href="/Users/Index">Пользователи</a></li>
+                    <li><a href="/Users/Distribution">Районная проверка. Распределение</a></li>
+                    <li><a href="/Users/DistributionArea">Областная проверка. Распределение</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="glyphicon glyphicon-user"></span> Технический администратор
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Home/OutSite">Выйти</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            }
+            else if (Convert.ToInt32(Session["role"]) == 3)
+            {
+                @Html.Action("_SchoolNav", "Home")
+            }
+            else if (Convert.ToInt32(Session["role"]) == 4)
+            {
+                @Html.Action("_WatcherNav", "Home")
+            }
+            else if (Convert.ToInt32(Session["role"]) == 5)
+            {
+                @Html.Action("_DistrictNav", "Home")
+            }
+            else if (Convert.ToInt32(Session["role"]) == 6)
+            {
+                @Html.Action("_AreaNav", "Home")
+            }
+            else if (Convert.ToInt32(Session["role"]) == 7)
+            {
+                @Html.Action("_AreaCoordinatorNav", "Home")
+            }
+    </nav>
+    @RenderBody()
+    <footer class="navbar-fixed-bottom">
+        <p class="col-md-6 text-center"><small>&copy; Учреждение "Главный информационно-аналитический центр Министерства образования Республики Беларусь"</small></p>
+        <p class="col-md-6 text-center"><small> По вопросам, возникающим при работе с Системой, обращаться: e-mail:<a href="mailto:rkr@unibel.by">rkr@unibel.by</a></small></p>
+    </footer>
+
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+
+    <script type="text/javascript">
+        jQuery.browser = {};
+        (function () {
+            jQuery.browser.msie = false;
+            jQuery.browser.version = 0;
+            if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+                jQuery.browser.msie = true;
+                jQuery.browser.version = RegExp.$1;
+            }
+        })();
+    </script>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/Login.js"></script>
+    <script src="~/Scripts/Admin.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/chosen.jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
+    <script src="~/Scripts/AddCipher.js"></script>
+    <script src="~/Scripts/jquery.simplemodal.js"></script>
+    <script src="~/Scripts/Confirm.js"></script>
+    <script src="~/Scripts/Blanks.js"></script>
+    <script src="~/Scripts/error.js"></script>
+    <script src="~/Scripts/jquery.table2excel.js"></script>
+    <script src="~/Scripts/Print.js"></script>
+    <script src="~/Scripts/Time4.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

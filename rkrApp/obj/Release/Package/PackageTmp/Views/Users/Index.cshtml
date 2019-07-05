@@ -1,0 +1,70 @@
+﻿@model IEnumerable<rkrApp.Models.Users>
+
+@{
+    ViewBag.Title = "Пользователи";
+}
+
+<div id='confirm'>
+    <div class='header'><span>Удаление</span></div>
+    <div class="message">Вы уверены, что хотите удалить данного пользователя?</div>
+    <div class='buttons'>
+        <div class='no simplemodal-close btn btn-danger float-left'>Нет</div><div class='yes btn btn-success float-right'>Да</div>
+    </div>
+</div>
+<div style='display:none'>
+    <img src='/img/confirm/header.gif' alt='' />
+    <img src='/img/confirm/button.gif' alt='' />
+</div>
+
+
+<div class="row" id="roles">
+    <div class="col-md-12">
+        <h3>Список всех пользователей</h3>
+        <table id="all_users_site" class="table table-striped table-bordered" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Роль</th>
+                    <th>ФИО</th>
+                    <th>Область</th>
+                    <th>Район</th>
+                    <th>Школа</th>
+                    <th>Предмет</th>
+                    <th>Email</th>
+                    <th>Пароль</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model) {
+                <tr>
+                    <td>@item.Roles.name</td>
+                    <td>@item.surname @item.name @item.patronymic</td>
+                    <td>@item.getArea()</td>
+                    <td>@item.getDistrict()</td>
+                    <td>@item.getSchool()</td>
+                    <td>@item.getSubject()</td>
+                    <td>@item.email</td>
+                    <td>@if (item.password != null) { Write("+"); } else { Write("-"); }</td>
+                        <td class="btn-group-xs">
+                            <a href="@Url.Action("Details", "Users", new { id = item.id })" class="btn btn-info">
+                                <span class="glyphicon glyphicon-eye-open"> просмотреть</span>
+                            </a>
+                            <a href="@Url.Action("Edit", "Users", new { id = item.id })" class="btn btn-success">
+                                <span class="glyphicon glyphicon-edit"> редактировать</span>
+                            </a>
+                            @if (Convert.ToInt32(Session["role"]) != 7)
+                            {
+                            <a href="@Url.Action("Delete", "Users", new { id = item.id })" class="btn btn-danger delete_user">
+                                <span class="glyphicon glyphicon-trash"> удалить</span>
+                            </a>
+                            }
+                        </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

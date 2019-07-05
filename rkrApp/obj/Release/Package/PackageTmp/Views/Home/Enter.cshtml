@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Республиканские контрольные работы";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-offset-3 col-md-6 login centering">
+            @if (ViewBag.step == 1)
+            {
+                <a target="_blank" href="~/Content/Справка по входу_АС РКР.pdf" class="btn btn-danger login_a">Справка по входу в систему</a>
+            }
+            else if (ViewBag.step == 2)
+            {
+                if (Convert.ToInt32(ViewBag.role) == 3)
+                {
+                    <a target="_blank" href="~/Content/Инструкция_Школьный координатор_АС РКР.pdf" class="btn btn-default login_a">Справка. Роль "@ViewBag.role_name"</a>
+                }
+                else if (Convert.ToInt32(ViewBag.role) == 4)
+                {
+                    <a target="_blank" href="~/Content/Инструкция_Внешний координатор_АС РКР.pdf" class="btn btn-default login_a">Справка. Роль "@ViewBag.role_name"</a>
+                }
+                else if (Convert.ToInt32(ViewBag.role) == 5)
+                {
+                    <a target="_blank" href="~/Content/Инструкция_Районная предметная комиссия_АС РКР.pdf" class="btn btn-default login_a">Справка. Роль "@ViewBag.role_name"</a>
+                }
+                else if (Convert.ToInt32(ViewBag.role) == 6)
+                {
+                    <a target="_blank" href="~/Content/Инструкция_Областная предметная комиссия_АС РКР.pdf" class="btn btn-default login_a">Справка. Роль "@ViewBag.role_name"</a>
+                }
+                else if (Convert.ToInt32(ViewBag.role) == 7)
+                {
+                    <a target="_blank" href="~/Content/Инструкция_Региональный координатор_АС РКР.pdf" class="btn btn-default login_a">Справка. Роль "@ViewBag.role_name"</a>
+                }
+            }
+            <h4 class="form_name">Вход на сайт (Шаг @if (ViewBag.step != 3) { Write(ViewBag.step); } else { Write("2"); } из 2)</h4>
+            @if (ViewBag.step == 1) { 
+            <form method="post">
+                <input type="hidden" name="step" value="1">
+                <div>
+                    <label class="control-label col-xs-2 col-sm-2 col-md-2" for="email">Email:</label>
+                    <p class="control-label col-sm-10 col-xs-10 col-md-10">
+                        <input value="" class="form-control" id="email" name="email" type="email" required>
+                    </p>
+                </div>
+                <div class="btn_input">
+                    <input type="submit" class="btn btn-success" value="Далее">
+                </div>
+            </form>
+            }
+            else if (ViewBag.step == 2)
+            {
+                <form method="post" id="new_pass">
+                    <input type="hidden" name="step" value="2">
+                    <input type="hidden" name="email" value="@ViewBag.email">
+                    <h5 class="col-md-12">
+                        Ваша роль - "@ViewBag.role_name"
+                    </h5>
+                    <h5 class="error col-md-12"></h5>
+                    <div>
+                        <label class="control-label col-sm-2 col-md-2" for="pass">Пароль:</label>
+                        <p class="col-sm-10 col-md-10">
+                            <input name="pass" type="password" id="pass" value="" required class="form-control">
+                        </p>
+                    </div>
+                    <div>
+                        <label class="control-label col-sm-2 col-md-2" for="pass2">Повторите пароль:</label>
+                        <p class="col-sm-10 col-md-10">
+                            <input type="password" id="pass2" value="" required class="form-control">
+                        </p>
+                    </div>
+                    <div class="btn_input">
+                        <input type="submit" class="btn btn-success" value="Войти">
+                    </div>
+                </form>
+            }
+            else if (ViewBag.step == 3)
+            {
+                <div>
+                    <h5 class="col-md-12">
+                        Пользователя с таким email нет в базе данных. Проверьте правильность введенного email.
+                    </h5>
+                    <div class="btn_input">
+                        <a href="/Home/Enter?step=1" class="btn btn-default">Проверить email</a>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

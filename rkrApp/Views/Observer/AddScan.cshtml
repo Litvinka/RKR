@@ -1,0 +1,32 @@
+﻿@model rkrApp.Models.Students
+
+@{
+    ViewBag.Title = "Добавление бланков ответов";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <h3 class="watcher_btn">Загрузка бланков ответов</h3>
+            <p class="error">Важно! Все бланки ответов должны быть в формате  .jpeg/.jpg и не превышать 2 Мб (для сжатия можно использовать <a target="_blank" href="http://tinyjpg.com">tinyjpg.com</a>)</p>
+            <p class="watcher_btn">Загрузите бланки ответов. Названия файлов должны соответствовать шифрам</p>
+            <hr class="watcher_btn" />
+            @if (ViewBag.start != null && ViewBag.start <= DateTime.Now && DateTime.Now <= ViewBag.finish)
+            {
+            <form class="form-horizontal watcher_btn" id="drag-and-drop-zone" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="file" name="uploads" id="files" multiple accept="image/jpeg,image/jpg">
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-success">Загрузить</button>
+                    </div>
+                </div>
+            </form>
+            }
+
+            @Html.Action("_IndexScans", "Observer")
+        </div>
+    </div>
+</div>
+

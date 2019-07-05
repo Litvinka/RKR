@@ -1,0 +1,162 @@
+﻿@model rkrApp.Models.Users
+
+@{
+    ViewBag.Title = "Просмотр пользователя - " + Model.surname + " " + Model.name + " " + @Html.DisplayFor(model => model.patronymic);
+}
+
+<div id='confirm'>
+    <div class='header'><span>Сброс пароля</span></div>
+    <div class="message">Сбросить пароль данного пользователя?</div>
+    <div class='buttons'>
+        <div class='no simplemodal-close btn btn-danger float-left'>Нет</div><div class='yes btn btn-success float-right'>Да</div>
+    </div>
+</div>
+<div style='display:none'>
+    <img src='/img/confirm/header.gif' alt='' />
+    <img src='/img/confirm/button.gif' alt='' />
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <h3>@Model.surname @Model.name @Model.patronymic</h3>
+                <dl class="dl-horizontal">
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.id_role)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Roles.name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.email)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.email)
+                    </dd>
+
+                    <dt>
+                        Пароль:
+                    </dt>
+                    <dd>
+                        @if (Model.password != null) { Write("+"); } else { Write("-"); }
+                    </dd>
+
+                    @if(Model.id_role == 3)
+                    { 
+                        <dt>
+                            Область:
+                        </dt>
+                        <dd>
+                            @Model.getArea()
+                        </dd>
+
+                        <dt>
+                            Район:
+                        </dt>
+                        <dd>
+                            @Model.getDistrict()
+                        </dd>
+
+                        <dt>
+                            Школа:
+                        </dt>
+                        <dd>
+                            @Model.getSchool()
+                        </dd>
+
+                    }
+
+                    else if (Model.id_role == 4)
+                    {
+                        <dt>
+                            Область:
+                        </dt>
+                        <dd>
+                            @Model.getArea()
+                        </dd>
+
+                        <dt>
+                            Район:
+                        </dt>
+                        <dd>
+                            @Model.getDistrict()
+                        </dd>
+
+                        <dt>
+                            Школа:
+                        </dt>
+                        <dd>
+                            @Model.getSchool()
+                        </dd>
+                    }
+
+                    else if (Model.id_role == 5)
+                    {
+                    <dt>
+                        Область:
+                    </dt>
+                    <dd>
+                        @Model.getArea()
+                    </dd>
+
+                    <dt>
+                        Район:
+                    </dt>
+                    <dd>
+                        @Model.getDistrict()
+                    </dd>
+
+                    <dt>
+                        Предмет:
+                    </dt>
+                    <dd>
+                        @Model.getSubject()
+                    </dd>
+                    }
+
+                    else if (Model.id_role == 6 || Model.id_role == 8)
+                    {
+                    <dt>
+                        Область:
+                    </dt>
+                    <dd>
+                        @Model.getArea()
+                    </dd>
+
+                    <dt>
+                        Предмет:
+                    </dt>
+                    <dd>
+                        @Model.getSubject()
+                    </dd>
+                    }
+
+                    else if (Model.id_role == 7)
+                    {
+                        <dt>
+                            Область:
+                        </dt>
+                        <dd>
+                            @Model.getArea()
+                        </dd>
+                    }
+
+                </dl>
+
+            <div>
+                <a href="@Url.Action("Index", "Users", new { id = Model.id })" class="btn btn-info">
+                    к списку пользователей
+                </a>
+                <a href="@Url.Action("Edit", "Users", new { id = Model.id })" class="btn btn-success">
+                    редактировать
+                </a>
+                <a href="@Url.Action("DeletePassword", "Users", new { id = Model.id })" id="delete_password" class="btn btn-primary">
+                    сбросить пароль
+                </a>
+            </div>
+
+         </div>
+    </div>
+</div>

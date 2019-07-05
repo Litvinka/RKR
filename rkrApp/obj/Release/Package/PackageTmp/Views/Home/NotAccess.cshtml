@@ -1,0 +1,16 @@
+﻿@model IEnumerable<rkrApp.Models.Time_X>
+@{
+    ViewBag.Title = "На данный момент страница недоступна";
+}
+
+<div class="container">
+    <h4>На данный момент страница недоступна</h4>
+    <h4>Доступ к личному кабинету будет открыт в соответствии с графиком работы Системы</h4>
+    @*<h4>На данный момент запрашиваемая страница недоступна. Доступ для пользователей:</h4>
+        <ul class="list-group">
+            @foreach (var item in Model)
+            {
+            <li class="list-group-item">"@item.Roles.name" @item.Subjects_Numbers.subject @if (item.is_appeal == true) { Write("(Апелляция)"); } - с <b>@item.start</b> по <b>@item.finish</b></li>
+            }
+        </ul>*@
+</div>

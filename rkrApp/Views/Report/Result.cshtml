@@ -1,0 +1,399 @@
+﻿@model IEnumerable<rkrApp.Models.Students>
+
+@{
+    ViewBag.Title = "Результаты республиканской контрольной работы";
+}
+
+<div class="row" style="margin:0px;">
+            <div class="col-xs-12 col-md-12">
+                <button type="button" id="btnExport" class="btn btn-success">
+                    Сохранить в Excel
+                </button>
+                <h3>Результаты республиканской контрольной работы (РКР) учащихся по учебному предмету "@ViewBag.subject" (2018/2019 учебный год) </h3>
+                <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="example5" style="font-size:12px;">
+                	<thead>
+                		<tr>
+                			<th>№ п/п</th>
+                			<th>Название региона</th>
+                			<th>Название района</th>
+                			<th>Название учреждения образования</th>
+                			<th>Код учреждения образования</th>
+                			<th>Место расположения учреждения образования (г/с)</th>
+                			<th>Вид учреждения образования</th>
+                			<th>ФИО учащегося</th>
+                			<th>Пол учащегося</th>
+                			<th>Класс (с указанием буквы)</th>
+                			<th>Шифр работы</th>
+                			<th>Вариант РКР</th>
+                			<th>Количество баллов, полученных учащимися за задания</th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                            <th>Ошибки</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                			<th>Суммарный балл за РКР (автоматизированная система перепроверяет корректность ввода суммы баллов за РКР) </th>
+                			<th>Отметка за РКР (выставляется на основании суммарного балла за РКР) </th>
+                			<th>Уровень усвоения учебного материала по результатам РКР (выставляется на основании суммарного балла) </th>
+                			<th>Результаты итоговой аттестации по учебному предмету за 2017/18 уч. г.(отметка) </th>
+                			<th>Уровень усвоения учебного материала по результатам итоговой аттестации за 2017/18 уч. г. </th>
+                			<th>Результаты промежуточной  аттестации за ׀ четверть 2018/19 уч. г. (отметка)</th>
+                			<th>Уровень усвоения учебного материала по результатам промежуточной аттестации за ׀ четверть 2018/19  уч. г.</th>
+                			<th>Результаты промежуточной аттестации за ׀׀ четверть 2018/19  уч. г. (отметка)</th>
+                			<th>Уровень усвоения учебного материала по результатам итоговой аттестации за ׀׀ четверть 2018/19  уч. г.</th>
+                		</tr>
+                		<tr>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th>№ 1</th>
+                			<th>№ 2</th>
+                			<th>№ 3</th>
+                			<th>№ 4</th>
+                			<th>№ 5</th>
+                			<th>№ 6</th>
+                			<th>№ 7</th>
+                			<th>№ 8</th>
+                			<th>№ 9</th>
+                			<th>№ 10</th>
+                            <th>Ошибки при ответе на № 1</th>
+                            <th>Ошибки при ответе на № 2</th>
+                            <th>Ошибки при ответе на № 3</th>
+                            <th>Ошибки при ответе на № 4</th>
+                            <th>Ошибки при ответе на № 5</th>
+                            <th>Ошибки при ответе на № 6</th>
+                            <th>Ошибки при ответе на № 7</th>
+                            <th>Ошибки при ответе на № 8</th>
+                            <th>Ошибки при ответе на № 9</th>
+                            <th>Ошибки при ответе на № 10</th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                			<th></th>
+                		</tr>
+                	</thead>
+                	<tbody>
+                        @for (int i = 0; i < Model.Count(); ++i)
+                        {
+                		<tr>
+                			<td>@(i+1)</td>
+                			<td>@Model.ElementAt(i).Classes.Schools.Districts.Area.name</td>
+                			<td>@Model.ElementAt(i).Classes.Schools.Districts.name</td>
+                			<td>@Model.ElementAt(i).Classes.Schools.name</td>
+                			<td>@Model.ElementAt(i).Classes.Schools.code</td>
+                			<td>@Model.ElementAt(i).Classes.Schools.Places.name</td>
+                			<td>@Model.ElementAt(i).Classes.Schools.Types_edu.name</td>
+                			<td>@Model.ElementAt(i).surname @Model.ElementAt(i).name @if (Model.ElementAt(i).patronomic != null) { Write(Model.ElementAt(i).patronomic); }</td>
+                			<td>@Model.ElementAt(i).Genders.name</td>
+                			<td>@Model.ElementAt(i).Classes.Subjects_Numbers.number @if(@Model.ElementAt(i).Classes.letter!=null){ Write('"' + Model.ElementAt(i).Classes.letter+'"'); }</td>
+                			<td>@Model.ElementAt(i).cipher</td>
+                			<td>@Model.ElementAt(i).getVariant()</td>
+                            @if (Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2)!=null)
+                            {
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).answer1</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).answer2</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).answer3</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).answer4</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).answer5</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).answer6</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).answer7</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).answer8</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).answer9</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).answer10</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).errors1</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).errors2</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).errors3</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).errors4</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).errors5</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).errors6</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).errors7</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).errors8</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).errors9</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).errors10</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).SumOfScores</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).Mark</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2).Level</td>
+                            }
+                            else
+                            {
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).answer1</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).answer2</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).answer3</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).answer4</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).answer5</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).answer6</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).answer7</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).answer8</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).answer9</td>
+                			    <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).answer10</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).errors1</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).errors2</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).errors3</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).errors4</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).errors5</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).errors6</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).errors7</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).errors8</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).errors9</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).errors10</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).SumOfScores</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).Mark</td>
+                                <td>@Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1).Level</td>
+                            }
+                			<td>@Model.ElementAt(i).mark_year</td>
+                			<td>@Model.ElementAt(i).getLevel(Model.ElementAt(i).mark_year)</td>
+                			<td>@Model.ElementAt(i).mark_1semestr</td>
+                            <td>@Model.ElementAt(i).getLevel(Model.ElementAt(i).mark_1semestr)</td>
+                			<td>@Model.ElementAt(i).mark_2semestr</td>
+                            <td>@Model.ElementAt(i).getLevel(Model.ElementAt(i).mark_2semestr)</td>
+                		</tr>
+                        }
+                		<tr>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                		</tr>
+                		<tr>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                		</tr>
+                		<tr>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                		</tr>
+                		@*<tr>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td><b>количество учащихся</b></td>
+                			<td><b>набравших максимальный балл</b></td>
+                			<td><b>@(Model.Count(p=>p.Results.FirstOrDefault(d=>d.number_verification==2 && d.answer1.Equals("1"))!=null) + Model.Count(p=>(p.Results.FirstOrDefault(s=>s.number_verification==2)==null) && p.Results.FirstOrDefault(s=>s.number_verification==1 && s.answer1.Equals("1"))!= null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer2.Equals("1")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer2.Equals("1")) != null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer3.Equals("2")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer3.Equals("2")) != null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer4.Equals("2")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer4.Equals("2")) != null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer5.Equals("3")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer5.Equals("3")) != null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer6.Equals("3")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer6.Equals("3")) != null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer7.Equals("4")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer7.Equals("4")) != null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer8.Equals("4")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer8.Equals("4")) != null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer9.Equals("5")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer9.Equals("5")) != null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer10.Equals("5")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer10.Equals("5")) != null))</b></td>
+                            <td></td>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                            <td></td>
+                		</tr>*@
+                		@*<tr>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                            <td><b>не приступивших к выполнению</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer1.Equals("н")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer1.Equals("н")) != null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer2.Equals("н")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer2.Equals("н")) != null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer3.Equals("н")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer3.Equals("н")) != null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer4.Equals("н")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer4.Equals("н")) != null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer5.Equals("н")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer5.Equals("н")) != null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer6.Equals("н")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer6.Equals("н")) != null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer7.Equals("н")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer7.Equals("н")) != null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer8.Equals("н")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer8.Equals("н")) != null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer9.Equals("н")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer9.Equals("н")) != null))</b></td>
+                            <td><b>@(Model.Count(p => p.Results.FirstOrDefault(d => d.number_verification == 2 && d.answer10.Equals("н")) != null) + Model.Count(p => (p.Results.FirstOrDefault(s => s.number_verification == 2) == null) && p.Results.FirstOrDefault(s => s.number_verification == 1 && s.answer10.Equals("н")) != null))</b></td>
+                			<td></td>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                			<td></td>
+                            <td></td>
+                		</tr>*@
+                	</tbody>
+                </table>
+                </div>
+                
+            </div>
+        </div>

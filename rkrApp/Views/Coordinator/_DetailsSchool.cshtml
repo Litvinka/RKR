@@ -1,0 +1,25 @@
+﻿@model rkrApp.Models.Schools
+<div class="col-xs-12 col-md-12">
+    <h3>Информация о школе</h3>
+    <table>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.name)</td>
+            <td>@Html.DisplayFor(model => model.name)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Types_edu.name)</td>
+            <td>@Html.DisplayFor(model => model.Types_edu.name)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Places.name)</td>
+            <td>@Html.DisplayFor(model => model.Places.name)</td>
+        </tr>
+    </table>
+
+    @if (Model.Classes.Count() > 0 && Model.Classes.ElementAt(0).Subjects_Numbers.start > DateTime.Now)
+    {
+    <p>    
+        @Html.ActionLink("Редактировать", "EditSchool", new { id = Model.id }, htmlAttributes: new { @class = "btn btn-success school_btn", @title = "Редактировать", @type = "button" })
+    </p>
+       }
+</div>

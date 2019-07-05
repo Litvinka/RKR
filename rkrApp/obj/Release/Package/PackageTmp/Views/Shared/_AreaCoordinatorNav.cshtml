@@ -1,0 +1,27 @@
+﻿@model rkrApp.Models.Area
+
+<ul class="nav navbar-nav">
+    <li class="active">
+        <a href="/RegionCoordinator/Index">
+            Прохождение РКР
+        </a>
+    </li>
+    <li class="active">
+        <a href="/Users/Index">
+            Пользователи
+        </a>
+    </li>
+    <li class="active"><a href="/Nio/Files">Список файлов</a></li>
+    <li class="active"><a href="/Report/Report">Результаты</a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <span class="glyphicon glyphicon-user"></span>Региональный координатор @Model.name область
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="/Home/OutSite">Выйти</a></li>
+        </ul>
+    </li>
+</ul>

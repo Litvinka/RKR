@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Бланки ответов для скачивания";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <h3>Бланки ответов для проверки</h3>
+            <form method="post" action="@Url.Action("GetArchive","Results",new { type=(Convert.ToInt32(Session["role"])==5)?1:3})">
+                <input type="submit" value="Скачать" />
+            </form>
+        </div>
+        @if (ViewBag.app_start != null && ViewBag.app_start<=DateTime.Now)
+        {
+        <div class="col-xs-12 col-md-12">
+            <h3>Бланки ответов для проверки (апелляция)</h3>
+            <form method="post" action="@Url.Action("GetArchive", "Results", new { type = 2 })">
+                <input type="submit" value="Скачать" />
+            </form>
+        </div>
+        }
+    </div>
+</div>

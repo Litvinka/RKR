@@ -1,0 +1,70 @@
+﻿@model IEnumerable<rkrApp.Models.Students>
+
+<div class="container">
+    <div id="added_ciphers">
+
+        <div id='confirm'>
+            <div class='header'><span>Удаление</span></div>
+            <div class="message">Вы уверены, что хотите удалить данную запись?</div>
+            <div class='buttons'>
+                <div class='no simplemodal-close btn btn-danger float-left'>Нет</div><div class='yes btn btn-success float-right'>Да</div>
+            </div>
+        </div>
+        <div style='display:none'>
+            <img src='/img/confirm/header.gif' alt='' />
+            <img src='/img/confirm/button.gif' alt='' />
+        </div>
+
+        <h3>Добавлено @ViewBag.add шифров из @ViewBag.all:</h3>
+        <p class="watcher_btn">В случае удаления или изменения шифра учащегося, для которого уже загружен бланк ответов, бланк ответов будет удален.</p>
+        <table id="table_ciphers" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Буква класса:</th>
+                    <th>Номер по журналу:</th>
+                    <th>Шифр:</th>
+                    <th>ФИО</th>
+                    @if (ViewBag.start != null && ViewBag.start >= DateTime.Now && DateTime.Now <= ViewBag.finish)
+                    {
+                        <th>Действия</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @if (item.Classes.letter != null)
+                            { @item.Classes.letter }
+                        </td>
+                        <td>
+                            @item.number_in_the_list
+                        </td>
+                        <td>
+                            @item.cipher
+                        </td>
+                        <td>
+                            @item.surname
+                            @item.name
+                            @if (item.patronomic != null)
+                            { @item.patronomic }
+                        </td>
+                        @if (ViewBag.start != null && ViewBag.start <= DateTime.Now && DateTime.Now <= ViewBag.finish)
+                        {
+                            <td class="btn-group-xs">
+                                <a href="@Url.Action("UpdateCipher", "Observer", new { student_id = item.id })" class="btn btn-success watcher_btn">
+                                    <span class="glyphicon glyphicon-edit"> редактировать</span>
+                                </a>
+                                <a href="@Url.Action("Delete", "Observer", new { id = item.id })" class="delete_chiper btn btn-danger watcher_btn">
+                                    <span class="glyphicon glyphicon-trash"> удалить шифр</span>
+                                </a>
+                            </td>
+                        }
+                    </tr>
+                }@*@Url.Action("Delete", "Observer", new { id = item.id })*@
+            </tbody>
+        </table>
+
+    </div>
+</div>

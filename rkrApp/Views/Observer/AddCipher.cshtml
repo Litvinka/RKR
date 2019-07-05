@@ -1,0 +1,98 @@
+﻿@model rkrApp.Models.Students
+
+@{
+    ViewBag.Title = "AddCipher";
+}
+<div class="container">
+    
+    @if (DateTime.Now >= new DateTime(2019, 03, 05, 10, 45, 0))
+
+    {
+    <p class="school_cod"><b>Код УО: @ViewBag.school_code</b></p>
+
+
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <a href="@Url.Action("IndexCiphers","Observer")" class="btn btn-success">Список добавленных шифров</a>
+            <h3 class="watcher_btn">Добавить шифры:</h3>
+            <p class="error">
+                Важно! Внешним наблюдателям для определения порядкового номера бланка ответов учащихся необходимо использовать сквозную нумерацию (001, 002, 003 и т.д.). Нескольким внешним наблюдателям, находящимся в учреждении образования одновременно, следует до начала процедуры шифрования определить порядковые номера, с которых будет начинаться нумерация в каждом классе. Например:
+                10 «А» – с 001 по 025
+                10.»Б» – с 026 по 050
+                10 «В»– с 051 по 075 и т.д.
+            </p>
+            <hr />
+            <p>@if (ViewBag.added != null) { Write(ViewBag.added); }</p>
+
+            @if (ViewBag.start != null && ViewBag.start <= DateTime.Now && DateTime.Now <= ViewBag.finish && ViewBag.add != ViewBag.all)
+            {
+                using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal watcher_btn">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                        @if (ViewBag.letters != null)
+                        {
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Classes.letter, htmlAttributes: new { @class = "control-label col-sm-2 col-md-2" })
+                            <div class="col-sm-10 col-md-10">
+                                @Html.DropDownList("letters", null, "", htmlAttributes: new { @class = "form-control", required = true })
+                                @Html.ValidationMessageFor(model => model.Classes.letter, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        }
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.id, htmlAttributes: new { @class = "control-label col-sm-2 col-md-2" })
+                            <div class="col-sm-10 col-md-10">
+                                @Html.DropDownList("students", null, "", htmlAttributes: new { @class = "form-control", required = true })
+                                @Html.ValidationMessageFor(model => model.id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group small_label">
+                            @Html.LabelFor(model => model.cipher, htmlAttributes: new { @class = "control-label col-sm-2 col-md-2" })
+                                    <div class="col-md-2">
+                                        <label for="cipher">дата</label>
+                                        <input type="number" max="31" min="1" disabled value="@ViewBag.date" name="cipher" id="cipher" maxlength="2" size="2" required class="form-control">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="schoolCode">код школы</label>
+                                        <input type="text" value="@ViewBag.school_code" disabled name="schoolCode" id="schoolCode" maxlength="4" size="4" required class="form-control">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="number">порядковый номер (xxx)</label>
+                                        <input type="text" name="number" id="number" pattern="[0-9]{3}" size="3" required class="form-control">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="variant">вариант</label>
+                                        <input type="number" value="" min="1" max="4" name="variant" id="variant" maxlength="1" size="1" required class="form-control">
+                                    </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Добавить" class="btn btn-success" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else if (ViewBag.add == ViewBag.all)
+            {
+                <p class="watcher_btn">Шифры для всех учащихся добавлены. Проверьте правильность введенных данных и при необходимости внесите изменения.</p>
+            }
+            <hr class="watcher_btn" />
+
+        </div>
+    </div>
+    }
+    else
+    {
+        <p>Доступ к шифрованию пока не доступен</p>
+    }
+
+</div>

@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище rkrDBModelContainer" CdmEntityContainer="rkrDBEntities">
+    <EntitySetMapping Name="Area">
+      <EntityTypeMapping TypeName="rkrDBModel.Area">
+        <MappingFragment StoreEntitySet="Area">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id_coordinator" ColumnName="id_coordinator" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Areas_Check">
+      <EntityTypeMapping TypeName="rkrDBModel.Areas_Check">
+        <MappingFragment StoreEntitySet="Areas_Check">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_user_check" ColumnName="id_user_check" />
+          <ScalarProperty Name="id_subject_number" ColumnName="id_subject_number" />
+          <ScalarProperty Name="id_area" ColumnName="id_area" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Classes">
+      <EntityTypeMapping TypeName="rkrDBModel.Classes">
+        <MappingFragment StoreEntitySet="Classes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="letter" ColumnName="letter" />
+          <ScalarProperty Name="id_subject_number" ColumnName="id_subject_number" />
+          <ScalarProperty Name="id_school" ColumnName="id_school" />
+          <ScalarProperty Name="count" ColumnName="count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Districts">
+      <EntityTypeMapping TypeName="rkrDBModel.Districts">
+        <MappingFragment StoreEntitySet="Districts">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id_area" ColumnName="id_area" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Districts_Check">
+      <EntityTypeMapping TypeName="rkrDBModel.Districts_Check">
+        <MappingFragment StoreEntitySet="Districts_Check">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_user_check" ColumnName="id_user_check" />
+          <ScalarProperty Name="id_subject_number" ColumnName="id_subject_number" />
+          <ScalarProperty Name="id_district" ColumnName="id_district" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documents">
+      <EntityTypeMapping TypeName="rkrDBModel.Documents">
+        <MappingFragment StoreEntitySet="Documents">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="path" ColumnName="path" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="id_subject_number" ColumnName="id_subject_number" />
+          <ScalarProperty Name="id_type_document" ColumnName="id_type_document" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genders">
+      <EntityTypeMapping TypeName="rkrDBModel.Genders">
+        <MappingFragment StoreEntitySet="Genders">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Places">
+      <EntityTypeMapping TypeName="rkrDBModel.Places">
+        <MappingFragment StoreEntitySet="Places">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Results">
+      <EntityTypeMapping TypeName="rkrDBModel.Results">
+        <MappingFragment StoreEntitySet="Results">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_student" ColumnName="id_student" />
+          <ScalarProperty Name="answer1" ColumnName="answer1" />
+          <ScalarProperty Name="answer2" ColumnName="answer2" />
+          <ScalarProperty Name="answer3" ColumnName="answer3" />
+          <ScalarProperty Name="answer4" ColumnName="answer4" />
+          <ScalarProperty Name="answer5" ColumnName="answer5" />
+          <ScalarProperty Name="answer6" ColumnName="answer6" />
+          <ScalarProperty Name="answer7" ColumnName="answer7" />
+          <ScalarProperty Name="answer8" ColumnName="answer8" />
+          <ScalarProperty Name="answer9" ColumnName="answer9" />
+          <ScalarProperty Name="answer10" ColumnName="answer10" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="number_verification" ColumnName="number_verification" />
+          <ScalarProperty Name="date_verification" ColumnName="date_verification" />
+          <ScalarProperty Name="necessarily" ColumnName="necessarily" />
+          <ScalarProperty Name="errors1" ColumnName="errors1" />
+          <ScalarProperty Name="errors2" ColumnName="errors2" />
+          <ScalarProperty Name="errors3" ColumnName="errors3" />
+          <ScalarProperty Name="errors4" ColumnName="errors4" />
+          <ScalarProperty Name="errors5" ColumnName="errors5" />
+          <ScalarProperty Name="errors6" ColumnName="errors6" />
+          <ScalarProperty Name="errors7" ColumnName="errors7" />
+          <ScalarProperty Name="errors8" ColumnName="errors8" />
+          <ScalarProperty Name="errors9" ColumnName="errors9" />
+          <ScalarProperty Name="errors10" ColumnName="errors10" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="rkrDBModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Schools">
+      <EntityTypeMapping TypeName="rkrDBModel.Schools">
+        <MappingFragment StoreEntitySet="Schools">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id_district" ColumnName="id_district" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="id_type_edy" ColumnName="id_type_edy" />
+          <ScalarProperty Name="id_place" ColumnName="id_place" />
+          <ScalarProperty Name="code" ColumnName="code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Schools_Observers">
+      <EntityTypeMapping TypeName="rkrDBModel.Schools_Observers">
+        <MappingFragment StoreEntitySet="Schools_Observers">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_school" ColumnName="id_school" />
+          <ScalarProperty Name="id_observer" ColumnName="id_observer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sessions">
+      <EntityTypeMapping TypeName="rkrDBModel.Sessions">
+        <MappingFragment StoreEntitySet="Sessions">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="date_enter" ColumnName="date_enter" />
+          <ScalarProperty Name="date_exit" ColumnName="date_exit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="rkrDBModel.Students">
+        <MappingFragment StoreEntitySet="Students">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="cipher" ColumnName="cipher" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="patronomic" ColumnName="patronomic" />
+          <ScalarProperty Name="level_edu" ColumnName="level_edu" />
+          <ScalarProperty Name="mark_year" ColumnName="mark_year" />
+          <ScalarProperty Name="mark_1semestr" ColumnName="mark_1semestr" />
+          <ScalarProperty Name="mark_2semestr" ColumnName="mark_2semestr" />
+          <ScalarProperty Name="number_in_the_list" ColumnName="number_in_the_list" />
+          <ScalarProperty Name="variant" ColumnName="variant" />
+          <ScalarProperty Name="scan" ColumnName="scan" />
+          <ScalarProperty Name="id_classs" ColumnName="id_classs" />
+          <ScalarProperty Name="id_gender" ColumnName="id_gender" />
+          <ScalarProperty Name="last_change" ColumnName="last_change" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjects_Numbers">
+      <EntityTypeMapping TypeName="rkrDBModel.Subjects_Numbers">
+        <MappingFragment StoreEntitySet="Subjects_Numbers">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="subject" ColumnName="subject" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="start" ColumnName="start" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="rkrDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Time_X">
+      <EntityTypeMapping TypeName="rkrDBModel.Time_X">
+        <MappingFragment StoreEntitySet="Time_X">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="start" ColumnName="start" />
+          <ScalarProperty Name="finish" ColumnName="finish" />
+          <ScalarProperty Name="id_role" ColumnName="id_role" />
+          <ScalarProperty Name="id_subject_number" ColumnName="id_subject_number" />
+          <ScalarProperty Name="is_appeal" ColumnName="is_appeal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Types_Document">
+      <EntityTypeMapping TypeName="rkrDBModel.Types_Document">
+        <MappingFragment StoreEntitySet="Types_Document">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Types_edu">
+      <EntityTypeMapping TypeName="rkrDBModel.Types_edu">
+        <MappingFragment StoreEntitySet="Types_edu">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="rkrDBModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="id_role" ColumnName="id_role" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,152 @@
+﻿@model rkrApp.Models.Results
+
+@{
+    ViewBag.Title = "Редактирование результата";
+}
+<div class="row" id="area">
+    <h3>Редактирование результата:</h3>
+    <div class="col-md-7">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.id)
+                @Html.HiddenFor(model => model.date_verification)
+                @Html.HiddenFor(model => model.id_student)
+                @Html.HiddenFor(model => model.id_user)
+                @Html.HiddenFor(model => model.number_verification)
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width:50px">№</th>
+                            <th style="width:15%">Количество баллов</th>
+                            <th>Список ошибок</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                @Html.EditorFor(model => model.answer1, new { htmlAttributes = new { @class = "form-control", required = true } })
+                                @Html.ValidationMessageFor(model => model.answer1, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.errors1, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.errors1, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>
+                                @Html.EditorFor(model => model.answer2, new { htmlAttributes = new { @class = "form-control", required = true } })
+                                @Html.ValidationMessageFor(model => model.answer2, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.errors2, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.errors2, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>
+                                @Html.EditorFor(model => model.answer3, new { htmlAttributes = new { @class = "form-control", required = true } })
+                                @Html.ValidationMessageFor(model => model.answer3, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.errors3, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.errors3, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>
+                                @Html.EditorFor(model => model.answer4, new { htmlAttributes = new { @class = "form-control", required = true } })
+                                @Html.ValidationMessageFor(model => model.answer4, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.errors4, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.errors4, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>
+                                @Html.EditorFor(model => model.answer5, new { htmlAttributes = new { @class = "form-control", required = true } })
+                                @Html.ValidationMessageFor(model => model.answer5, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.errors5, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.errors5, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>
+                                @Html.EditorFor(model => model.answer6, new { htmlAttributes = new { @class = "form-control", required = true } })
+                                @Html.ValidationMessageFor(model => model.answer6, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.errors6, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.errors6, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>
+                                @Html.EditorFor(model => model.answer7, new { htmlAttributes = new { @class = "form-control", required = true } })
+                                @Html.ValidationMessageFor(model => model.answer7, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.errors7, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.errors7, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>
+                                @Html.EditorFor(model => model.answer8, new { htmlAttributes = new { @class = "form-control", required = true } })
+                                @Html.ValidationMessageFor(model => model.answer8, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.errors8, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.errors8, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>
+                                @Html.EditorFor(model => model.answer9, new { htmlAttributes = new { @class = "form-control", required = true } })
+                                @Html.ValidationMessageFor(model => model.answer9, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.errors9, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.errors9, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>
+                                @Html.EditorFor(model => model.answer10, new { htmlAttributes = new { @class = "form-control", required = true } })
+                                @Html.ValidationMessageFor(model => model.answer10, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.errors10, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.errors10, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Сохранить" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        }
+        <a href="/Results/EditResult" class="btn btn-info">Вернуться к списку результатов</a>
+    </div>
+</div>
+

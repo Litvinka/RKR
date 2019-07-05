@@ -1,0 +1,74 @@
+﻿@model IEnumerable<rkrApp.Models.Classes>
+
+@{
+    ViewBag.Title = "IndexClasses";
+}
+<div id='confirm'>
+    <div class='header'><span>Удаление</span></div>
+    <div class="message">Вы уверены, что хотите удалить данную запись?</div>
+    <div class='buttons'>
+        <div class='no simplemodal-close btn btn-danger float-left'>Нет</div><div class='yes btn btn-success float-right'>Да</div>
+    </div>
+</div>
+<div style='display:none'>
+    <img src='/img/confirm/header.gif' alt='' />
+    <img src='/img/confirm/button.gif' alt='' />
+</div>
+<div class="container">
+    <div class="row">
+        @Html.Action("_DetailsSchool", "Coordinator")
+        
+        <div class="col-xs-12 col-md-12">
+            <h3>Классы, проходящие РКР</h3>
+            
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <th>@Html.DisplayNameFor(model => model.Subjects_Numbers.subject_number)</th>
+                    <th>@Html.DisplayNameFor(model => model.letter)</th>
+                    <th>@Html.DisplayNameFor(model => model.count)</th>
+                    <th></th>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subjects_Numbers.subject_number)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.letter)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.count)
+                        </td>
+                        <td class="btn-group-xs">
+                            @if (item.Subjects_Numbers.start > DateTime.Now)
+                            {
+                            <a href="@Url.Action("EditClass", "Coordinator", new { id = item.id })" class="btn btn-success school_btn">
+                                <span class="glyphicon glyphicon-edit"> редактировать</span>
+                            </a>
+                            }
+                            <a href="@Url.Action("CreateStudent", "Coordinator", new { id = item.id })" class="btn btn-success">
+                                <span class="glyphicon glyphicon-user"> список учащихся</span>
+                            </a>
+                            @if (item.Subjects_Numbers.start > DateTime.Now)
+                            {
+                            <a href="@Url.Action("DeleteClass", "Coordinator", new { id = item.id })" class="DeleteClass btn btn-danger school_btn">
+                                <span class="glyphicon glyphicon-trash"> удалить</span>
+                            </a>
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            @if ((Model.Count() > 0 && Model.ElementAt(0).Subjects_Numbers.start > DateTime.Now) || Model.Count() == 0)
+            {
+            <p>
+                @Html.ActionLink("Добавить класс", "CreateClass", "Coordinator", htmlAttributes: new { @class = "btn btn-success school_btn", @title = "Добавить класс", @type = "button" })
+            </p>
+            }
+        </div>
+
+    </div>
+</div>

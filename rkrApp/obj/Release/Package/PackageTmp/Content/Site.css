@@ -1,0 +1,201 @@
+﻿footer > p {
+    text-align: center;
+    background-color: #f8f8f8;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    margin-bottom: 0px;
+    border-top: 1px solid #d6d5d5;
+}
+body {
+    margin-bottom: 100px;
+    overflow-x: hidden;
+}
+#scan_img{
+    width:100%;
+    cursor:pointer;
+}
+.small_label div.col-md-2 label{
+    font-size:12px;
+}
+nav.navbar-default .navbar-nav > .active > a:hover, nav.navbar-default .navbar-nav a:hover {
+    color: #fff;
+    background-color: #9c9c9c;
+}
+.scan{
+    display:none;
+}
+#area {
+    padding: 15px;
+    margin: 0px;
+    margin-bottom: 150px;
+}
+nav ul.dropdown-menu{
+    width:100%;
+}
+.error{
+    color:red;
+}
+#add_result .form-control {
+    padding: 6px 0px 6px 6px;
+}
+#add_result table td {
+    padding: 0px;
+    border: 0px;
+    border-radius: 0px;
+    -webkit-box-shadow: unset;
+    box-shadow: unset;
+}
+
+td.red {
+    background-color: #d6181496;
+}
+
+td.green {
+    background-color: #16832499;
+}
+
+td.yellow {
+    background-color: rgba(249, 255, 111, 0.8);
+}
+
+#add_result table{
+    background-color: white;
+}
+#add_result{
+    padding: 20px;
+}
+#add_result > div{
+    margin-top: 30px;
+}
+.scan{
+    position: relative;
+    padding: 40px;
+}
+.scan > span{
+   position: absolute;
+   top: 50px;
+   right: 55px;
+   font-size: 25px;
+   cursor: pointer;
+}
+#roles{
+    padding: 15px;
+    margin: 0px;
+    padding-top: 30px;
+}
+div.radio > label{
+    margin-right: 20px;
+}
+.img-responsive.cipher{
+    width:150px;
+    cursor:pointer;
+}
+#files{
+    margin-left: 15px;
+}
+
+#div_classes{
+    display:flex;
+    flex-wrap:wrap;
+}
+#div_classes>div.col-md-6{
+    padding: 15px;
+}
+
+/*LOGIN*/
+div.login {
+    padding: 40px;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    background-color: #f8f8f8;
+    border: 1px solid #e7e0e0;
+    position: relative;
+}
+a.login_a {
+    font-size: 14px;
+    position: absolute;
+    top: -40px;
+    right: 0px;
+}
+div.login p {
+    text-align: center;
+}
+div.login > form > div {
+    margin-top: 10px;
+}
+div.login > form > p:last-child {
+    margin-top:10px;
+    margin-bottom: 0px;
+}
+div.container {
+    position: relative;
+}
+.school_cod {
+    position: absolute;
+    right: -25px;
+    top: 0px;
+    border: 1px solid gray;
+    padding: 10px;
+}
+.form_name{
+    text-align:center;
+    margin-bottom:30px;
+}
+div.btn_input{
+    text-align:right;
+    padding-right:15px;
+}
+/*LOGIN (END)*/
+#add_errors table td input {
+    width: 55px;
+}
+
+/*ADMIN*/
+#zavuch, #watcher, #areaCheck, #districtCheck, #region {
+    display: none;
+}
+/*ADMIN (END)*/
+
+/*BLANK*/
+.popup {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    display: none;
+    text-align: center;
+}
+.popup_bg {
+    background:rgba(0,0,0,0.4);
+    position:absolute;
+    z-index:1;
+    height:100%;
+    width:100%;
+}
+.popup_img {
+    position: relative;
+    margin:0 auto;
+    z-index:2;
+    max-height:94%;
+    max-width:94%;
+    margin:1% 0 0 0;
+}
+/*BLANK (END)*/
+
+/*REPORT*/
+div.report>h3{
+    margin-bottom:50px;
+}
+div.report a {
+    padding: 30px 0px;
+    text-decoration: none;
+    text-align: center;
+    width: calc(25% - 40px);
+    margin: 20px;
+}
+/*REPORT (END)*/
+.nav-tabs > li > a {
+    font-weight: bold;
+}

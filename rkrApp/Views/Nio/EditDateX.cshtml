@@ -1,0 +1,58 @@
+﻿@model rkrApp.Models.Time_X
+
+@{
+    ViewBag.Title = "Изменение времени доступа к Системе";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <h3>Изменение времени доступа к Системе:</h3>
+            <form method="post" action="/nio/EditDateX">
+
+                <div class="form-horizontal">
+                    @Html.HiddenFor(model => model.id)
+                    @Html.HiddenFor(model => model.id_subject_number)
+                    @Html.HiddenFor(model => model.id_role)
+                    @Html.HiddenFor(model => model.is_appeal)
+
+                    <div class="row">
+                        <label class="col-md-2 control-label">Предмет:</label>
+                        <div class="col-md-10">
+                            @Model.Subjects_Numbers.subject
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-md-2 control-label">Роль:</label>
+                        <div class="col-md-10">
+                            @Model.Roles.name
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.start, "Начало доступа", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="datetime" value="@Model.start.ToString("dd.MM.yyyy H:mm:ss")" class="form-control" name="start" required />
+                            @Html.ValidationMessageFor(model => model.start, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.finish, "Окончание доступа", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="datetime" value="@Model.finish.ToString("dd.MM.yyyy H:mm:ss")" class="form-control" name="finish" required />
+                            @Html.ValidationMessageFor(model => model.finish, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Сохранить изменения" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

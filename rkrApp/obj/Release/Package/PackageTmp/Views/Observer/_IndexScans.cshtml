@@ -1,0 +1,61 @@
+﻿@model IEnumerable<rkrApp.Models.Students>
+
+<div id='confirm'>
+    <div class='header'><span>Удаление</span></div>
+    <div class="message">Вы уверены, что хотите удалить данную запись?</div>
+    <div class='buttons'>
+        <div class='no simplemodal-close btn btn-danger float-left'>Нет</div><div class='yes btn btn-success float-right'>Да</div>
+    </div>
+</div>
+<div style='display:none'>
+    <img src='/img/confirm/header.gif' alt='' />
+    <img src='/img/confirm/button.gif' alt='' />
+</div>
+
+<h3>Загружено @ViewBag.upload из @ViewBag.all бланков ответов:</h3>
+<table class="table table-striped table-bordered" id="table_blanks">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.cipher)</th>
+            <th>@Html.DisplayNameFor(model => model.scan)</th>
+            @if (ViewBag.start != null && ViewBag.start >= DateTime.Now && DateTime.Now <= ViewBag.finish)
+            {
+            <th></th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cipher)
+                </td>
+                <td>
+                    @if (item.scan != null) {
+                    @*<img class="img-responsive cipher" src="@Html.DisplayFor(modelItem => item.scan)"/>*@
+                        <a href="@Html.DisplayFor(modelItem => item.scan)" class="img-responsive_a btn btn-primary">Открыть бланк</a>
+                    }
+                    else
+                    {
+                        <span>Не загружен</span>
+                    }
+                </td>
+                @if (ViewBag.start != null && ViewBag.start <= DateTime.Now && DateTime.Now <= ViewBag.finish)
+                {
+                <td class="btn-group-xs">
+                    <a href="@Url.Action("EditBlank", "Observer", new { id = item.id })" class="btn btn-success watcher_btn">
+                        <span class="glyphicon glyphicon-edit"> изменить бланк</span>
+                    </a>
+                    @if (item.scan != null)
+                    {
+                    <a href="@Url.Action("DeleteBlank", "Observer", new { id = item.id })" class="btn btn-danger delete_blank watcher_btn">
+                        <span class="glyphicon glyphicon-eye-open"> удалить бланк</span>
+                    </a>
+                    }
+                </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

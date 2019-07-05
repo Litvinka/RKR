@@ -1,0 +1,98 @@
+﻿@model IEnumerable<rkrApp.Models.Students>
+
+@{
+    ViewBag.Title = "Апелляция";
+}
+
+<div class="container">
+    @if (ViewBag.start != null && DateTime.Now >= ViewBag.start)
+    {
+
+    <h3>Подача работ на апелляцию:</h3>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <th>№</th>
+            <th>Шифр</th>
+            <th>ФИО</th>
+            <th>@Html.DisplayNameFor(model => model.mark_year)</th>
+            <th>@Html.DisplayNameFor(model => model.mark_1semestr)</th>
+            <th>@Html.DisplayNameFor(model => model.mark_2semestr)</th>
+            <th>Отметка РПК</th>
+            <th>Статус</th>
+            @if (DateTime.Now <= ViewBag.end)
+            {
+            <th></th>
+            }
+        </thead>
+
+        <tbody>
+            @for (int i = 0; i < Model.Count(); ++i)
+            {
+                <tr>
+                    <td>
+                        @(i + 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).cipher)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).allname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).mark_year)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).mark_1semestr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).mark_2semestr)
+                    </td>
+                    <td>
+                        @if (Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification <= 1) != null)
+                        {
+                            @Model.ElementAt(i).Results.First(p => p.number_verification <= 1).Mark
+                        }
+                    </td>
+                    <td>
+                        @if (Model.ElementAt(i).Results.Count(p => p.number_verification == 2) > 0)
+                        {
+                            <span class="glyphicon glyphicon-ok" style="color:green"></span>
+                        }
+                        else
+                        {
+                            <span class="glyphicon glyphicon-remove" style="color:red"></span>
+                        }
+                    </td>
+                    @if (DateTime.Now <= ViewBag.end)
+                    {
+                    <td class="btn-group-xs">
+                        @if (Model.ElementAt(i).Results.Count(s => s.number_verification == 1) > 0 && Model.ElementAt(i).Results.Count(s => s.number_verification == 1 && s.answer1 == null) == 0)
+                        {
+                            if (Model.ElementAt(i).Results.Count(p => p.number_verification == 2) > 0)
+                            {
+                                <a href="@Url.Action("DelAppeal", "Coordinator", new { id = Model.ElementAt(i).id })" class="btn btn-danger school_btn">
+                                    <span class="glyphicon glyphicon-remove"> Снять с апелляции</span>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("AddAppeal", "Coordinator", new { id = Model.ElementAt(i).id })" class="btn btn-success school_btn">
+                                    <span class="glyphicon glyphicon-edit"> Подать на апелляцию</span>
+                                </a>
+                            }
+                        }
+                    </td>
+                    }
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+    }
+    else 
+    {
+        <h3>Апелляция на данный момент не доступна</h3>
+    }
+
+</div>

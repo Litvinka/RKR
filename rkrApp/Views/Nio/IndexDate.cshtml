@@ -1,0 +1,45 @@
+﻿@model IEnumerable<rkrApp.Models.Time_X>
+
+@{
+    ViewBag.Title = "Даты доступа к Системе";
+}
+
+<div class="row" id="roles">
+    <div class="col-md-12">
+        <h3>Список дат доступа пользователей к Системе</h3>
+        <table id="all_docs_site" class="table table-striped table-bordered" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Предмет</th>
+                    <th>Роль</th>
+                    <th>Апелляция?</th>
+                    <th>Дата начала</th>
+                    <th>Дата окончания</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count(); ++i)
+                {
+                    <tr>
+                        <td>@(i + 1)</td>
+                        <td>@Model.ElementAt(i).Subjects_Numbers.subject</td>
+                        <td>@Model.ElementAt(i).Roles.name</td>
+                        <td>
+                            @if (Convert.ToBoolean(Model.ElementAt(i).is_appeal)) { Write("+"); }
+                            else { Write("-"); }
+                        </td>
+                        <td>@Model.ElementAt(i).start</td>
+                        <td>@Model.ElementAt(i).finish</td>
+                            <td class="btn-group-xs">
+                                <a href="@Url.Action("EditDateX", "Nio", new { id = Model.ElementAt(i).id })" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-edit"> редактировать</span>
+                                </a>
+                            </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

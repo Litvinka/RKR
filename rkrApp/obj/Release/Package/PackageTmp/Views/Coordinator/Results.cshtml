@@ -1,0 +1,81 @@
+﻿@model IEnumerable<rkrApp.Models.Students>
+
+@{
+    ViewBag.Title = "Апелляция";
+}
+
+<div class="container">
+
+    @if (ViewBag.time != null && ViewBag.time <= DateTime.Now)
+    {
+
+    <h3>Результаты:</h3>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <th>№</th>
+            <th>Шифр</th>
+            <th>ФИО</th>
+            <th>@Html.DisplayNameFor(model => model.mark_year)</th>
+            <th>@Html.DisplayNameFor(model => model.mark_1semestr)</th>
+            <th>@Html.DisplayNameFor(model => model.mark_2semestr)</th>
+            <th>Отметка за первую проверку</th>
+            <th>Отметка после апелляции</th>
+            <th>Итоговая отметка</th>
+        </thead>
+
+        <tbody>
+            @for (int i = 0; i < Model.Count(); ++i)
+            {
+                <tr>
+                    <td>
+                        @(i + 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).cipher)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).allname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).mark_year)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).mark_1semestr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).mark_2semestr)
+                    </td>
+                    <td>
+                        @if (Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1 && p.answer1 != null) != null)
+                        {
+                            @Model.ElementAt(i).Results.First(p => p.number_verification == 1 && p.answer1 != null).Mark
+                        }
+                    </td>
+                    <td>
+                        @if (Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2 && p.answer1 != null) != null)
+                        {
+                        @Model.ElementAt(i).Results.First(p => p.number_verification == 2 && p.answer1 != null).Mark
+                        }
+                    </td>
+                    <td>
+                        @if (Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 2 && p.answer1 != null) != null)
+                        {
+                            @Model.ElementAt(i).Results.First(p => p.number_verification == 2 && p.answer1 != null).Mark
+                        }
+                        else if (Model.ElementAt(i).Results.FirstOrDefault(p => p.number_verification == 1 && p.answer1 != null) != null)
+                        {
+                            @Model.ElementAt(i).Results.First(p => p.number_verification == 1 && p.answer1 != null).Mark
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    }
+    else
+    {
+        <h3>Результаты на данный момент не доступны</h3>
+    }
+
+</div>

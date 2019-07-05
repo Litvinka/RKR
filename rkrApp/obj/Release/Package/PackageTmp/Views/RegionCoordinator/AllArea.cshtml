@@ -1,0 +1,25 @@
+﻿@model IEnumerable<rkrApp.Models.Area>
+
+<table id="all_school_site" class="table table-striped table-bordered" width="100%" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Область</th>
+            <th>Областная предметная комиссия (Белорусский язык)</th>
+            <th>Областная предметная комиссия (Русский язык)</th>
+            <th>Областная предметная комиссия (Математика)</th>
+            <th>Областная предметная комиссия (История Беларуси)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.name</td>
+                <td class="@if (item.addArea(1) == 0) { Write("red"); } else if (item.addArea(1) == item.allArea(1)) { Write("green"); } else { Write("orange"); } ">@item.addArea(1) из @item.allArea(1)</td>
+                <td class="@if (item.addArea(2) == 0) { Write("red"); } else if (item.addArea(2) == item.allArea(2)) { Write("green"); } else { Write("orange"); } ">@item.addArea(2) из @item.allArea(2)</td>
+                <td class="@if (item.addArea(3) == 0) { Write("red"); } else if (item.addArea(3) == item.allArea(3)) { Write("green"); } else { Write("orange"); } ">@item.addArea(3) из @item.allArea(3)</td>
+                <td class="@if (item.addArea(4) == 0) { Write("red"); } else if (item.addArea(4) == item.allArea(4)) { Write("green"); } else { Write("orange"); } ">@item.addArea(4) из @item.allArea(4)</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Результаты республиканской контрольной работы";
+}
+
+<div class="row" style="margin:0px;">
+    <div class="col-md-12 report"> 
+        <h3>Результаты республиканской контрольной работы (РКР) учащихся (2018/2019 учебный год) </h3>
+        <a class="col-md-3 bg-info" href="@Url.Action("ExportExcel", "Report", new { subject = 1 })">Результаты РКР по белорусскому языку</a>    
+        <a class="col-md-3 bg-info" href="@Url.Action("ExportExcel", "Report", new { subject = 2 })">Результаты РКР по русскому языку</a>
+        <a class="col-md-3 bg-info" href="@Url.Action("ExportExcel", "Report", new { subject = 3 })">Результаты РКР по математике</a>
+        <a class="col-md-3 bg-info" href="@Url.Action("ExportExcel", "Report", new { subject = 4 })">Результаты РКР по истории Беларуси</a>
+
+        <a class="col-md-3 bg-info" href="@Url.Action("ExportData", "Report", new { subject = 1, type=1 })">Результаты районной проверки по белорусскому языку</a>
+        <a class="col-md-3 bg-info" href="@Url.Action("ExportData", "Report", new { subject = 2, type=1 })">Результаты районной проверки по русскому языку</a>
+        <a class="col-md-3 bg-info" href="@Url.Action("ExportData", "Report", new { subject = 3, type=1 })">Результаты районной проверки по математике</a>
+        <a class="col-md-3 bg-info" href="@Url.Action("ExportData", "Report", new { subject = 4, type=1 })">Результаты районной проверки по истории Беларуси</a>
+
+        <a class="col-md-3 bg-info" href="@Url.Action("ExportData", "Report", new { subject = 1, type=2 })">Результаты апелляции по белорусскому языку</a>
+        <a class="col-md-3 bg-info" href="@Url.Action("ExportData", "Report", new { subject = 2, type=2 })">Результаты апелляции по русскому языку</a>
+        <a class="col-md-3 bg-info" href="@Url.Action("ExportData", "Report", new { subject = 3, type=2 })">Результаты апелляции по математике</a>
+        <a class="col-md-3 bg-info" href="@Url.Action("ExportData", "Report", new { subject = 4, type=2 })">Результаты апелляции по истории Беларуси</a>
+
+        <a class="col-md-3 bg-info" href="@Url.Action("ExportData", "Report", new { subject = 1, type=3 })">Результаты областной проверки по белорусскому языку</a>
+        <a class="col-md-3 bg-info" href="@Url.Action("ExportData", "Report", new { subject = 2, type=3 })">Результаты областной проверки по русскому языку</a>
+        <a class="col-md-3 bg-info" href="@Url.Action("ExportData", "Report", new { subject = 3, type=3 })">Результаты областной проверки по математике</a>
+        <a class="col-md-3 bg-info" href="@Url.Action("ExportData", "Report", new { subject = 4, type=3 })">Результаты областной проверки по истории Беларуси</a>
+
+        @if (Convert.ToInt32(Session["role"])==1){ 
+        <a class="col-md-3 bg-info" href="@Url.Action("CompareResult", "Report", new { subject = 1 })">Результаты сравнения РПК и ОПК по белорусскому языку</a>
+        <a class="col-md-3 bg-info" href="@Url.Action("CompareResult", "Report", new { subject = 2 })">Результаты сравнения РПК и ОПК по русскому языку</a>
+        <a class="col-md-3 bg-info" href="@Url.Action("CompareResult", "Report", new { subject = 3 })">Результаты сравнения РПК и ОПК по математике</a>
+        <a class="col-md-3 bg-info" href="@Url.Action("CompareResult", "Report", new { subject = 4 })">Результаты сравнения РПК и ОПК по истории Беларуси</a>
+        }
+    </div>
+</div>

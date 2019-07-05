@@ -1,0 +1,130 @@
+﻿@model IEnumerable<rkrApp.Models.Districts>
+
+@{
+    ViewBag.Title = "Региональный координатор";
+}
+
+<div class="col-md-12" style="margin-bottom:120px;">
+    <h3>Процесс РКР</h3>
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#pupilstab" role="tab" data-toggle="tab">Школьные координаторы</a></li>
+        <li><a href="#watchertab" role="tab" data-toggle="tab">Внешние наблюдатели</a></li>
+        <li><a href="#regiontab" role="tab" data-toggle="tab">Районные предметные комиссии</a></li>
+        @if (Convert.ToInt32(Session["role"]) == 7)
+        {
+            <li><a href="#area1tab" role="tab" data-toggle="tab">Областные предметные комиссии</a></li>
+        }
+        else
+        {
+            <li><a href="#areatab" role="tab" data-toggle="tab">Областные предметные комиссии</a></li>
+        }
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active" id="pupilstab">
+            @Html.Action("AllSchool", "RegionCoordinator")
+        </div>
+        <div class="tab-pane" id="watchertab">
+            <table id="all_region_site" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        @if (Convert.ToInt32(Session["role"]) == 1)
+                        {
+                            <th>Область</th>
+                        }
+                        <th>Район</th>
+                        <th>Добавление шифров (Белорусский язык)</th>
+                        <th>Добавление бланков ответов (Белорусский язык)</th>
+                        <th>Добавление шифров (Русский язык)</th>
+                        <th>Добавление бланков ответов (Русский язык)</th>
+                        <th>Добавление шифров (Математика)</th>
+                        <th>Добавление бланков ответов (Математика)</th>
+                        <th>Добавление шифров (История Беларуси)</th>
+                        <th>Добавление бланков ответов (История Беларуси)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @if (Convert.ToInt32(Session["role"]) == 1)
+                            {
+                                <td>@item.Area.name</td>
+                            }
+                            <td>@item.name</td>
+                            <td class="@if (item.addCipher(Convert.ToInt32(Session["user"]), 1) == 0) { Write("red"); } else if (item.addCipher(Convert.ToInt32(Session["user"]), 1) == item.allCipher(Convert.ToInt32(Session["user"]), 1)) { Write("green"); } else { Write("yellow"); }">@item.addCipher(Convert.ToInt32(Session["user"]), 1) из @item.allCipher(Convert.ToInt32(Session["user"]), 1)</td>
+                            <td class="@if (item.addScans(Convert.ToInt32(Session["user"]), 1) ==0) { Write("red"); } else if (item.addScans(Convert.ToInt32(Session["user"]), 1) == item.allScans(Convert.ToInt32(Session["user"]), 1)) { Write("green"); } else { Write("yellow"); }">@item.addScans(Convert.ToInt32(Session["user"]), 1) из @item.allScans(Convert.ToInt32(Session["user"]), 1)</td>
+                            <td class="@if (item.addCipher(Convert.ToInt32(Session["user"]), 2) == 0){ Write("red"); } else if (item.addCipher(Convert.ToInt32(Session["user"]), 2) == item.allCipher(Convert.ToInt32(Session["user"]), 2)) { Write("green"); } else { Write("yellow"); }">@item.addCipher(Convert.ToInt32(Session["user"]), 2) из @item.allCipher(Convert.ToInt32(Session["user"]), 2)</td>
+                            <td class="@if (item.addScans(Convert.ToInt32(Session["user"]), 2) == 0) { Write("red"); } else if (item.addScans(Convert.ToInt32(Session["user"]), 2) == item.allScans(Convert.ToInt32(Session["user"]), 2)) { Write("green"); } else { Write("yellow"); }">@item.addScans(Convert.ToInt32(Session["user"]), 2) из @item.allScans(Convert.ToInt32(Session["user"]), 2)</td>
+                            <td class="@if (item.addCipher(Convert.ToInt32(Session["user"]), 3) == 0) { Write("red"); } else if (item.addCipher(Convert.ToInt32(Session["user"]), 3) == item.allCipher(Convert.ToInt32(Session["user"]), 3)) { Write("green"); } else { Write("yellow"); }">@item.addCipher(Convert.ToInt32(Session["user"]), 3) из @item.allCipher(Convert.ToInt32(Session["user"]), 3)</td>
+                            <td class="@if (item.addScans(Convert.ToInt32(Session["user"]), 3) ==0) { Write("red"); } else if (item.addScans(Convert.ToInt32(Session["user"]), 3) == item.allScans(Convert.ToInt32(Session["user"]), 3)) { Write("green"); } else { Write("yellow"); }">@item.addScans(Convert.ToInt32(Session["user"]), 3) из @item.allScans(Convert.ToInt32(Session["user"]), 3)</td>
+                            <td class="@if (item.addCipher(Convert.ToInt32(Session["user"]), 4) == 0){ Write("red"); } else if (item.addCipher(Convert.ToInt32(Session["user"]), 4) == item.allCipher(Convert.ToInt32(Session["user"]), 4)) { Write("green"); } else { Write("yellow"); }">@item.addCipher(Convert.ToInt32(Session["user"]), 4) из @item.allCipher(Convert.ToInt32(Session["user"]), 4)</td>
+                            <td class="@if (item.addScans(Convert.ToInt32(Session["user"]), 4) == 0) { Write("red"); } else if (item.addScans(Convert.ToInt32(Session["user"]), 4) == item.allScans(Convert.ToInt32(Session["user"]), 4)) { Write("green"); } else { Write("yellow"); }">@item.addScans(Convert.ToInt32(Session["user"]), 4) из @item.allScans(Convert.ToInt32(Session["user"]), 4)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane" id="regiontab">
+            <table id="all_users_site" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        @if (Convert.ToInt32(Session["role"]) == 1)
+                        {
+                            <th>Область</th>
+                        }
+                        <th>Район</th>
+                        <th>Проверка районной предметной комиссией (Белорусский язык)</th>
+                        <th>Апелляция (Белорусский язык)</th>
+                        <th>Проверка районной предметной комиссией (Русский язык)</th>
+                        <th>Апелляция (Русский язык)</th>
+                        <th>Проверка районной предметной комиссией (Математика)</th>
+                        <th>Апелляция (Математика)</th>
+                        <th>Проверка районной предметной комиссией (История Беларуси)</th>
+                        <th>Апелляция (История Беларуси)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @if (Convert.ToInt32(Session["role"]) == 1)
+                            {
+                                <td>@item.Area.name</td>
+                            }
+                            <td>@item.name</td>
+                            <td class="@if (item.addDistrict(Convert.ToInt32(Session["user"]), 1) == 0) { Write("red"); } else if (item.addDistrict(Convert.ToInt32(Session["user"]), 1) == item.allDistrict(Convert.ToInt32(Session["user"]), 1)) { Write("green"); } else { Write("yellow"); }">@item.addDistrict(Convert.ToInt32(Session["user"]), 1) из @item.allDistrict(Convert.ToInt32(Session["user"]), 1)</td>
+                            <td class="@if (item.addDistrict2(Convert.ToInt32(Session["user"]), 1) == 0) { Write("red"); } else if (item.addDistrict2(Convert.ToInt32(Session["user"]), 1) == item.allDistrict2(Convert.ToInt32(Session["user"]), 1)) { Write("green"); } else { Write("yellow"); }">@item.addDistrict2(Convert.ToInt32(Session["user"]), 1) из @item.allDistrict2(Convert.ToInt32(Session["user"]), 1)</td>
+                            <td class="@if (item.addDistrict(Convert.ToInt32(Session["user"]), 2) == 0) { Write("red"); } else if (item.addDistrict(Convert.ToInt32(Session["user"]), 2) == item.allDistrict(Convert.ToInt32(Session["user"]), 2)) { Write("green"); } else { Write("yellow"); }">@item.addDistrict(Convert.ToInt32(Session["user"]), 2) из @item.allDistrict(Convert.ToInt32(Session["user"]), 2)</td>
+                            <td class="@if (item.addDistrict2(Convert.ToInt32(Session["user"]), 2) == 0) { Write("red"); } else if (item.addDistrict2(Convert.ToInt32(Session["user"]), 2) == item.allDistrict2(Convert.ToInt32(Session["user"]), 2)) { Write("green"); } else { Write("yellow"); }">@item.addDistrict2(Convert.ToInt32(Session["user"]), 2) из @item.allDistrict2(Convert.ToInt32(Session["user"]), 2)</td>
+                            <td class="@if (item.addDistrict(Convert.ToInt32(Session["user"]), 3) == 0) { Write("red"); } else if (item.addDistrict(Convert.ToInt32(Session["user"]), 3) == item.allDistrict(Convert.ToInt32(Session["user"]), 3)) { Write("green"); } else { Write("yellow"); }">@item.addDistrict(Convert.ToInt32(Session["user"]), 3) из @item.allDistrict(Convert.ToInt32(Session["user"]), 3)</td>
+                            <td class="@if (item.addDistrict2(Convert.ToInt32(Session["user"]), 3) == 0) { Write("red"); } else if (item.addDistrict2(Convert.ToInt32(Session["user"]), 3) == item.allDistrict2(Convert.ToInt32(Session["user"]), 3)) { Write("green"); } else { Write("yellow"); }">@item.addDistrict2(Convert.ToInt32(Session["user"]), 3) из @item.allDistrict2(Convert.ToInt32(Session["user"]), 3)</td>
+                            <td class="@if (item.addDistrict(Convert.ToInt32(Session["user"]), 4) == 0) { Write("red"); } else if (item.addDistrict(Convert.ToInt32(Session["user"]), 4) == item.allDistrict(Convert.ToInt32(Session["user"]), 4)) { Write("green"); } else { Write("yellow"); }">@item.addDistrict(Convert.ToInt32(Session["user"]), 4) из @item.allDistrict(Convert.ToInt32(Session["user"]), 4)</td>
+                            <td class="@if (item.addDistrict2(Convert.ToInt32(Session["user"]), 4) == 0) { Write("red"); } else if (item.addDistrict2(Convert.ToInt32(Session["user"]), 4) == item.allDistrict2(Convert.ToInt32(Session["user"]), 4)) { Write("green"); } else { Write("yellow"); }">@item.addDistrict2(Convert.ToInt32(Session["user"]), 4) из @item.allDistrict2(Convert.ToInt32(Session["user"]), 4)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @if (Convert.ToInt32(Session["role"]) == 7)
+        {
+        <div class="tab-pane" id="area1tab">
+            <p style="margin-top:50px;"><b>Областная предметная комиссия по белорусскому языку: </b> проверено @Model.ElementAt(0).addArea(Convert.ToInt32(Session["user"]), 1) из @Model.ElementAt(0).allArea(Convert.ToInt32(Session["user"]), 1)</p>
+            <p><b>Областная предметная комиссия по русскому языку: </b> проверено @Model.ElementAt(0).addArea(Convert.ToInt32(Session["user"]), 2) из @Model.ElementAt(0).allArea(Convert.ToInt32(Session["user"]), 2)</p>
+            <p><b>Областная предметная комиссия по математике: </b> проверено @Model.ElementAt(0).addArea(Convert.ToInt32(Session["user"]), 3) из @Model.ElementAt(0).allArea(Convert.ToInt32(Session["user"]), 3)</p>
+            <p><b>Областная предметная комиссия по истории Беларуси: </b> проверено @Model.ElementAt(0).addArea(Convert.ToInt32(Session["user"]), 4) из @Model.ElementAt(0).allArea(Convert.ToInt32(Session["user"]), 4)</p>
+        </div>
+        }
+        else
+        {
+            <div class="tab-pane" id="areatab">
+                @Html.Action("AllArea", "RegionCoordinator")
+            </div>
+        }
+    </div>
+
+
+</div>
+

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="rkrDBEntities-Web.config Connection String" description="rkrDBEntities Строка подключения в web.config, используемая приложением для доступа к базе данных." defaultValue="metadata=res://*/Models.rkrModel.csdl|res://*/Models.rkrModel.ssdl|res://*/Models.rkrModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=dolbich\SQLSERVER2012;initial catalog=rkrDB;integrated security=True;multipleactiveresultsets=True;application name=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\rkrApp\\rkrApp\\rkrApp\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='rkrDBEntities']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="26e75f80d77e44a38f29b22e2d565b9f" Name="Diagram1">
+        <EntityTypeShape EntityType="rkrDBModel.Area" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Areas_Check" Width="1.5" PointX="7.5" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Classes" Width="1.5" PointX="15" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Districts" Width="1.5" PointX="7.5" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Districts_Check" Width="1.5" PointX="9.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Documents" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Genders" Width="1.5" PointX="15" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Places" Width="1.5" PointX="10.5" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Results" Width="1.5" PointX="19.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Roles" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Schools" Width="1.5" PointX="12.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Schools_Observers" Width="1.5" PointX="15" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Sessions" Width="1.5" PointX="5.25" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Students" Width="1.5" PointX="17.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Subjects_Numbers" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Time_X" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Types_Document" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Types_edu" Width="1.5" PointX="10.5" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rkrDBModel.Users" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
+        <AssociationConnector Association="rkrDBModel.FK_Area" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Area_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Areas_Check_Area" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Areas_Check_Subjects_Numbers" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Areas_Check_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Classes_Subjects_Numbers" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Schools" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Students_Classes" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Districts_Check_Districts" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Schools_Districts" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Districts_Check_Subjects_Numbers" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Districts_Check_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Documents_Subjects_Numbers" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Documents_Types_Document" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Students_Genders" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Schools_Places" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Results_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Results_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Time_X_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Users_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Schools_Observers_Schools" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Schools_Types_edu" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Schools_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Schools_Observers_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Sessions_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="rkrDBModel.FK_Time_X_Subjects_Numbers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

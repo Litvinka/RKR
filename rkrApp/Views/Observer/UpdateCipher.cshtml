@@ -1,0 +1,51 @@
+﻿@model rkrApp.Models.Students
+
+@{
+    ViewBag.Title = "Редактирование шифра для ученика " + Model.allname;
+}
+
+<div class="container">
+    <p class="school_cod"><b>Код УО: @Model.Classes.Schools.code</b></p>
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <h3>Редактировать шифр для @Model.allname</h3>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <input type="hidden" value="@Model.id"name="id" id="id" class="form-control">
+                    <div class="form-group small_label">
+                        @Html.LabelFor(model => model.cipher, htmlAttributes: new { @class = "control-label col-sm-2 col-md-2" })
+                        <div class="col-md-2">
+                            <label for="cipher">дата</label>
+                            <input type="number" max="31" min="1" disabled value="@Model.date" name="cipher" id="cipher" maxlength="2" size="2" required class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="schoolCode">код школы</label>
+                            <input type="text" value="@Model.Classes.Schools.code" disabled name="schoolCode" id="schoolCode" maxlength="4" size="4" required class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="number">порядковый номер (xxx)</label>
+                            <input type="text" name="number" id="number" pattern="[0-9]{3}" value="@Model.getNumber()" size="3" required class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="variant">вариант</label>
+                            <input type="number" value="@Model.getVariant()" min="1" max="4" name="variant" id="variant" maxlength="1" size="1" required class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Сохранить" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
